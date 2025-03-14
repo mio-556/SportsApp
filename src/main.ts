@@ -1,4 +1,6 @@
-import './assets/main.css'
+import '@/assets/main.scss'
+import '@/assets/layout.scss'
+// import widgetLib from '@/widgetLib'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'

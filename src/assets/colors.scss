@@ -1,0 +1,9 @@
+:root {
+  background-color: rgb(26, 26, 26);
+
+  --text-color: rgb(98, 98, 98);
+  --header-text-color: rgb(165, 165, 165);
+  --link-text-color: var(var(--text-color));
+
+  color: var(--text-color);
+}

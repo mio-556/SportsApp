@@ -1,0 +1,10 @@
+$background-color-button: rgb(36, 36, 36);
+$text-color-button: rgb(165, 165, 165);
+
+.mButton {
+  background-color: $background-color-button;
+  color: $text-color-button;
+  border-radius: 5px;
+  height: 2em;
+  width: 8em;
+}

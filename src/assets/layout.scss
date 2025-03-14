@@ -1,0 +1,35 @@
+:root {
+  $header-hight: 2em;
+
+  .mainContainer {
+    display: grid;
+    grid-template-rows: 3em, 1fr;
+
+    .mainHeaderContainer {
+      grid-row: 1/2;
+      height: $header-hight;
+      align-content: center;
+      border-bottom: solid 1px var(--text-color);
+    }
+    .mainBodyContainer {
+      grid-row: 2/3;
+      display: grid;
+      height: calc(100vh - $header-hight);
+      grid-template-columns: 10em 1fr 10em;
+    }
+  }
+  .mainBodyCenterContainer {
+    grid-column: 2/3;
+    border-left: solid 1px var(--text-color);
+    border-right: solid 1px var(--text-color);
+    padding: 1em;
+  }
+  .mainBodyLeftContainer {
+    grid-column: 1/2;
+    padding: 1em;
+  }
+  .mainBodyRightContainer {
+    grid-column: 3/4;
+    padding: 1em;
+  }
+}

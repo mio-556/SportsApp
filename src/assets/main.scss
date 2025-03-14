@@ -1,0 +1,45 @@
+@use 'colors';
+
+:root {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: small;
+  h1,
+  h2,
+  h3 {
+    color: var(--header-text-color);
+  }
+
+  .headerNavigation a {
+    margin-left: 1em;
+  }
+  //   using the selector class and pseudo classes
+  .headerNavigation a:link {
+    color: var(--link-text-color);
+  }
+  .headerNavigation a:visited {
+    color: var(--link-text-color);
+  }
+  .headerNavigation a:hover {
+    color: lightgray;
+  }
+  .headerNavigation a:active {
+    color: rgb(0, 168, 90);
+  }
+  .headerNavigationColumn {
+    @extend .headerNavigation;
+    display: flex;
+    flex-direction: column;
+  }
+  .headerNavigationColumn a {
+    margin-bottom: 0.5em;
+  }
+  //   directly on the elements
+  #mySpecialLink:link,
+  #mySpecialLink:visited {
+    color: var(--link-text-color);
+  }
+  #mySpecialLink:hover,
+  #mySpecialLink:active {
+    color: rgb(0, 168, 90);
+  }
+}
