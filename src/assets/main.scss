@@ -14,16 +14,21 @@
   }
   //   using the selector class and pseudo classes
   .headerNavigation a:link {
-    color: var(--link-text-color);
+    color: var(--header-text-color);
+    font-weight: bold;
+    text-decoration: none;
   }
   .headerNavigation a:visited {
-    color: var(--link-text-color);
+    color: var(--header-text-color);
+    font-weight: bold;
   }
   .headerNavigation a:hover {
     color: lightgray;
+    font-weight: bold;
   }
   .headerNavigation a:active {
     color: rgb(0, 168, 90);
+    font-weight: bold;
   }
   .headerNavigationColumn {
     @extend .headerNavigation;
@@ -31,7 +36,7 @@
     flex-direction: column;
   }
   .headerNavigationColumn a {
-    margin-bottom: 0.5em;
+    margin-bottom: 1em;
   }
   //   directly on the elements
   #mySpecialLink:link,

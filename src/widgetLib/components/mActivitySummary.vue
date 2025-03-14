@@ -10,13 +10,15 @@
     </div>
     <div class="content-left">
       <MActivitySubItem
-        :icon-source="iconSource1"
+        :svg="props.svgIcon1"
+        :icon-fill-color="props.iconsColor"
         :text="props.text1"
         :data-text="props.data1"
         :unit="props.unit1"
       />
       <MActivitySubItem
-        :icon-source="iconSource2"
+        :svg="props.svgIcon2"
+        :icon-fill-color="props.iconsColor"
         :text="props.text2"
         :data-text="props.data2"
         :unit="props.unit2"
@@ -24,7 +26,8 @@
     </div>
     <div class="content-right">
       <MActivitySubItem
-        :icon-source="iconSource3"
+        :svg="props.svgIcon3"
+        :icon-fill-color="props.iconsColor"
         :text="props.text3"
         :data-text="props.data3"
         :unit="props.unit3"
@@ -33,7 +36,7 @@
   </div>
 </template>
 <script setup language="ts">
-import { onMounted, ref } from 'vue'
+import { computed } from 'vue'
 import MActivitySubItem from './mActivitySubItem.vue'
 
 const props = defineProps({
@@ -60,17 +63,17 @@ const props = defineProps({
     required: false,
     default: '',
   },
-  icon1: {
+  svgIcon1: {
     type: String,
     required: false,
     default: '',
   },
-  icon2: {
+  svgIcon2: {
     type: String,
     required: false,
     default: '',
   },
-  icon3: {
+  svgIcon3: {
     type: String,
     required: false,
     default: '',
@@ -102,38 +105,57 @@ const props = defineProps({
     required: false,
     default: '',
   },
+  iconsColor: {
+    type: String,
+    required: false,
+    default: '',
+  },
+  backgroundColor: {
+    type: String,
+    required: false,
+    default: '',
+  },
 })
 
-const iconSource1 = ref('')
-const iconSource2 = ref('')
-const iconSource3 = ref('')
-
-onMounted(async () => {
-  const icons = await import('@mdi/js')
-
-  iconSource1.value = props.icon1 in icons ? icons[props.icon1] : ''
-  iconSource2.value = props.icon2 in icons ? icons[props.icon2] : ''
-  iconSource3.value = props.icon3 in icons ? icons[props.icon3] : ''
-})
+const backgroundColor = computed(() => props.backgroundColor)
 </script>
-<style scoped>
+<style scoped lang="scss">
+@use './components.scss';
 .container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 3em 1fr 3em 1fr 3em;
   grid-template-rows: auto;
   grid-template-areas:
-    'containerHeader containerHeader'
-    'contentLeft contentRight';
+    'containerHeader containerHeader containerHeader containerHeader containerHeader'
+    '. contentLeft . contentRight .';
   border-radius: 5px;
-  border: solid 1px var(--text-color);
+  border: solid 2px;
+  border-color: var(--m-border-color);
   margin-bottom: 1em;
   padding: 0.5em 1em 1em 1em;
   font-weight: bold;
+  background-color: v-bind(backgroundColor);
+}
+.container {
+  display: grid;
+  grid-template-columns: 3em 1fr 3em 1fr 3em;
+  grid-template-rows: auto;
+  grid-template-areas:
+    'containerHeader containerHeader containerHeader containerHeader containerHeader'
+    '. contentLeft . contentRight .';
+  border-radius: 5px;
+  border: solid 2px;
+  border-color: var(--m-border-color);
+  margin-bottom: 1em;
+  padding: 0.5em 1em 1em 1em;
+  font-weight: bold;
+  background-color: v-bind(backgroundColor);
 }
 .container-header {
   grid-area: containerHeader;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
   grid-template-areas: 'headerLeft headerRight';
   margin-bottom: 1.5em;
 }

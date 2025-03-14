@@ -1,38 +1,31 @@
 <template>
   <div class="mainBodyCenterContainer">
-    <div
-      style="
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-      "
-    >
-      <h3>Running</h3>
-      <widgets.mActivitySubItem :icon-source="mdiRun" :data-text="runsTotalDistance" unit="km" />
-    </div>
-    <div
-      style="border-bottom: solid 1px var(--text-color); padding-bottom: 0.5em; margin-bottom: 1em"
-    >
-      <widgets.mButton text="Add new" />
-    </div>
+    <widgets.mActivityHeader
+      title="Running"
+      :svg="mdiRun"
+      :icon-color="iconsColor"
+      :total-distance="runsTotalDistance"
+      unit="km"
+    />
 
     <div v-if="runsData">
-      <div v-for="(item, itemName) in runsData" :key="item">
+      <div v-for="(item, itemName, index) in runsData" :key="item">
         <widgets.mActivitySummary
           :header-text="item.description"
           :header-date="itemName"
           text1="Distance"
-          icon1="mdiMapMarkerDistance"
+          :svgIcon1="mdiMapMarkerDistance"
           :data1="item.distance"
           unit1="km"
           text2="Shoes"
-          icon2="mdiShoeSneaker"
+          :svgIcon2="mdiShoeSneaker"
           :data2="item.shoes"
           text3="Avg hr"
-          icon3="mdiHeartPulse"
+          :svgIcon3="mdiHeartPulse"
           :data3="item.avgHr"
           unit3="b/m"
+          :icons-color="iconsColor"
+          :background-color="index % 2 === 0 ? '#111316' : '#07100a'"
         />
       </div>
     </div>
@@ -45,8 +38,9 @@
 import { fetchJsonData } from '@/helpers/dataFetch'
 import widgets from '@/widgetLib'
 import { onMounted, ref } from 'vue'
-import { mdiRun } from '@mdi/js'
+import { mdiRun, mdiMapMarkerDistance, mdiShoeSneaker, mdiHeartPulse } from '@mdi/js'
 
+const iconsColor = 'rgb(0, 168, 90)'
 const runsData = ref()
 const runsTotalDistance = ref(0)
 

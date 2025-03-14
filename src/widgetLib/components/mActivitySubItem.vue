@@ -1,10 +1,10 @@
 <template>
   <div class="content">
-    <div v-if="props.iconSource === ''" style="margin-bottom: 0.5em">
+    <div v-if="props.svg === ''" style="margin-bottom: 0.5em">
       {{ props.text }} : {{ props.dataText }} {{ props.unit }}
     </div>
     <div v-else style="display: flex; flex-direction: row; align-items: center">
-      <MSvg :d="iconSource" />
+      <MSvg :d="svg" :fill="props.iconFillColor" />
       <div style="margin-left: 1em">{{ props.dataText }} {{ props.unit }}</div>
     </div>
   </div>
@@ -18,7 +18,12 @@ const props = defineProps({
     type: String,
     required: false,
   },
-  iconSource: {
+  svg: {
+    type: String,
+    required: false,
+    default: '',
+  },
+  iconFillColor: {
     type: String,
     required: false,
     default: '',
@@ -28,6 +33,11 @@ const props = defineProps({
     default: 'dataText',
   },
   unit: {
+    type: String,
+    required: false,
+    default: '',
+  },
+  backgroundColor: {
     type: String,
     required: false,
     default: '',

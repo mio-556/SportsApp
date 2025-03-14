@@ -1,10 +1,9 @@
 <template>
-  <button class="mButton" img="">{{ props.text }}</button>
+  <!-- <button class="mButton" img="">{{ props.text }}</button> -->
+  <div class="mButton">{{ props.text }}</div>
 </template>
 
 <script setup lang="ts">
-import MSvg from '../images/mSvg.vue'
-
 const props = defineProps({
   text: {
     type: String,

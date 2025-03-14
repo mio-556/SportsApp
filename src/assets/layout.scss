@@ -1,3 +1,4 @@
+@use 'colors';
 :root {
   $header-hight: 2em;
 
@@ -9,7 +10,7 @@
       grid-row: 1/2;
       height: $header-hight;
       align-content: center;
-      border-bottom: solid 1px var(--text-color);
+      background-color: var(--dark-theme-background-color-darker);
     }
     .mainBodyContainer {
       grid-row: 2/3;
@@ -20,8 +21,6 @@
   }
   .mainBodyCenterContainer {
     grid-column: 2/3;
-    border-left: solid 1px var(--text-color);
-    border-right: solid 1px var(--text-color);
     padding: 1em;
   }
   .mainBodyLeftContainer {

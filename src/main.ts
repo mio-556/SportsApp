@@ -1,5 +1,6 @@
 import '@/assets/main.scss'
 import '@/assets/layout.scss'
+import '@/assets/colors.scss'
 // import widgetLib from '@/widgetLib'
 
 import { createApp } from 'vue'

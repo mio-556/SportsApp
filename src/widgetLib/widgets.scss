@@ -5,6 +5,14 @@ $text-color-button: rgb(165, 165, 165);
   background-color: $background-color-button;
   color: $text-color-button;
   border-radius: 5px;
+  border: solid 2px;
+  border-left-color: rgb(98, 98, 98);
+  border-top-color: rgb(98, 98, 98);
+  border-right-color: black;
+  border-bottom-color: black;
   height: 2em;
   width: 8em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

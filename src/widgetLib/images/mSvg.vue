@@ -20,7 +20,7 @@ const props = defineProps({
   fill: {
     type: String,
     required: false,
-    default: 'var(--text-color)',
+    default: 'black',
   },
 })
 </script>
