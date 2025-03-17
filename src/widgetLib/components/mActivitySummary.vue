@@ -1,37 +1,41 @@
 <template>
   <div class="container">
     <div class="container-header">
-      <div class="header-left">
+      <div id="header-item-left">
         {{ props.headerText }}
       </div>
-      <div class="header-right">
+      <div id="header-item-right">
         {{ props.headerDate }}
       </div>
     </div>
-    <div class="content-left">
-      <MActivitySubItem
-        :svg="props.svgIcon1"
-        :icon-fill-color="props.iconsColor"
-        :text="props.text1"
-        :data-text="props.data1"
-        :unit="props.unit1"
-      />
-      <MActivitySubItem
-        :svg="props.svgIcon2"
-        :icon-fill-color="props.iconsColor"
-        :text="props.text2"
-        :data-text="props.data2"
-        :unit="props.unit2"
-      />
-    </div>
-    <div class="content-right">
-      <MActivitySubItem
-        :svg="props.svgIcon3"
-        :icon-fill-color="props.iconsColor"
-        :text="props.text3"
-        :data-text="props.data3"
-        :unit="props.unit3"
-      />
+    <div class="content-details">
+      <div class="content-details-item">
+        <MActivitySubItem
+          :svg="props.svgIcon1"
+          :icon-fill-color="props.iconsColor"
+          :text="props.text1"
+          :data-text="props.data1"
+          :unit="props.unit1"
+        />
+      </div>
+      <div class="content-details-item">
+        <MActivitySubItem
+          :svg="props.svgIcon2"
+          :icon-fill-color="props.iconsColor"
+          :text="props.text2"
+          :data-text="props.data2"
+          :unit="props.unit2"
+        />
+      </div>
+      <div class="content-details-item">
+        <MActivitySubItem
+          :svg="props.svgIcon3"
+          :icon-fill-color="props.iconsColor"
+          :text="props.text3"
+          :data-text="props.data3"
+          :unit="props.unit3"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -123,26 +127,11 @@ const backgroundColor = computed(() => props.backgroundColor)
 @use './components.scss';
 .container {
   display: grid;
-  grid-template-columns: 3em 1fr 3em 1fr 3em;
+  grid-template-columns: 3em 1fr 1fr 3em;
   grid-template-rows: auto;
   grid-template-areas:
-    'containerHeader containerHeader containerHeader containerHeader containerHeader'
-    '. contentLeft . contentRight .';
-  border-radius: 5px;
-  border: solid 2px;
-  border-color: var(--m-border-color);
-  margin-bottom: 1em;
-  padding: 0.5em 1em 1em 1em;
-  font-weight: bold;
-  background-color: v-bind(backgroundColor);
-}
-.container {
-  display: grid;
-  grid-template-columns: 3em 1fr 3em 1fr 3em;
-  grid-template-rows: auto;
-  grid-template-areas:
-    'containerHeader containerHeader containerHeader containerHeader containerHeader'
-    '. contentLeft . contentRight .';
+    'containerHeader containerHeader containerHeader containerHeader'
+    '. contentDetails contentDetails .';
   border-radius: 5px;
   border: solid 2px;
   border-color: var(--m-border-color);
@@ -153,24 +142,30 @@ const backgroundColor = computed(() => props.backgroundColor)
 }
 .container-header {
   grid-area: containerHeader;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto;
-  grid-template-areas: 'headerLeft headerRight';
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 1.5em;
 }
-.header-left {
-  grid-area: headerLeft;
-  justify-self: left;
+.content-details {
+  grid-area: contentDetails;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
 }
-.header-right {
-  grid-area: headerRight;
-  justify-self: right;
+.content-details-item {
+  max-width: 50%;
+  flex: 50%;
 }
-.content-left {
-  grid-area: contentLeft;
-}
-.content-right {
-  grid-area: contentRight;
+@media (max-width: 700px) {
+  .container-header {
+    flex-direction: column;
+    gap: 0.5em;
+  }
+
+  .content-details-item {
+    max-width: 100%;
+    flex: 100%;
+    justify-items: center;
+  }
 }
 </style>
