@@ -1,6 +1,6 @@
 <template>
   <!-- <button class="mButton" img="">{{ props.text }}</button> -->
-  <div class="mButton">{{ props.text }}</div>
+  <div class="mButton" @click="onButtonClicked">{{ props.text }}</div>
 </template>
 
 <script setup lang="ts">
@@ -10,6 +10,11 @@ const props = defineProps({
     required: true,
   },
 })
+const emits = defineEmits(['clicked'])
+
+const onButtonClicked = () => {
+  emits('clicked')
+}
 </script>
 
 <style scoped lang="scss">

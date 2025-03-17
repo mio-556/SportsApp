@@ -9,7 +9,7 @@
     />
   </div>
   <div style="padding-bottom: 0.5em; margin-bottom: 1em">
-    <MButton text="Add new" />
+    <MButton text="Add new" @clicked="addNewButtonClicked" />
   </div>
 </template>
 
@@ -44,6 +44,11 @@ const props = defineProps({
     default: '',
   },
 })
+const emits = defineEmits(['addNewButtonClicked'])
+
+const addNewButtonClicked = () => {
+  emits('addNewButtonClicked')
+}
 </script>
 <style scoped lang="scss">
 @use './components';

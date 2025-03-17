@@ -6,6 +6,7 @@
       :icon-color="iconsColor"
       :total-distance="runsTotalDistance"
       unit="km"
+      @add-new-button-clicked="openAddNewRunDialog"
     />
 
     <div v-if="runsData">
@@ -36,6 +37,7 @@
 
 <script setup>
 import { fetchJsonData } from '@/helpers/dataFetch'
+import axios from 'axios'
 import widgets from '@/widgetLib'
 import { onMounted, ref } from 'vue'
 import { mdiRun, mdiMapMarkerDistance, mdiShoeSneaker, mdiHeartPulse } from '@mdi/js'
@@ -44,8 +46,21 @@ const iconsColor = 'rgb(0, 168, 90)'
 const runsData = ref()
 const runsTotalDistance = ref(0)
 
+const openAddNewRunDialog = async () => {
+  console.log('TODO: Open Add Run Dialog')
+}
+
 onMounted(async () => {
-  runsData.value = await fetchJsonData('runsData.json')
+  // runsData.value = await fetchJsonData('runsData.json')
+
+  //fetch the data from the backend server /runs endpoint
+  try {
+    const response = await axios.get('http://192.168.0.104:3000/runs')
+    runsData.value = response.data
+  } catch (err) {
+    console.log(`${err}`)
+  }
+
   // claculate total distance
   for (let item in runsData.value) {
     runsTotalDistance.value += runsData.value[item].distance
