@@ -11,6 +11,7 @@
 
   .headerNavigation a {
     margin-left: 1em;
+    transition: color 0.3s ease;
   }
   //   using the selector class and pseudo classes
   .headerNavigation a:link {

@@ -139,6 +139,13 @@ const backgroundColor = computed(() => props.backgroundColor)
   padding: 0.5em 1em 1em 1em;
   font-weight: bold;
   background-color: v-bind(backgroundColor);
+  min-width: 205px;
+  max-width: 450px;
+  transition: filter 0.3s ease;
+}
+.container:hover {
+  filter: brightness(1.8);
+  box-shadow: 0 0 15px 5px rgba(0, 174, 255, 0.1); /* Vibrant glow */
 }
 .container-header {
   grid-area: containerHeader;

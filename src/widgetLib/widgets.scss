@@ -15,4 +15,12 @@ $text-color-button: rgb(165, 165, 165);
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+.mButton:active {
+  border-left-color: black;
+  border-top-color: black;
+  border-right-color: rgb(98, 98, 98);
+  border-bottom-color: rgb(98, 98, 98);
 }
