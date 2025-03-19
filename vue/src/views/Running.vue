@@ -9,8 +9,8 @@
       @add-new-button-clicked="openAddNewRunDialog"
     />
 
-    <div v-if="runsData">
-      <div v-for="(item, itemName, index) in runsData" :key="item">
+    <div v-if="runItems">
+      <div v-for="(item, itemName, index) in runItems" :key="item">
         <widgets.mActivitySummary
           :header-text="item.description"
           :header-date="itemName"
@@ -41,29 +41,30 @@ import axios from 'axios'
 import widgets from '@/widgetLib'
 import { onMounted, ref } from 'vue'
 import { mdiRun, mdiMapMarkerDistance, mdiShoeSneaker, mdiHeartPulse } from '@mdi/js'
+import { useRunsStore } from '@/stores/running'
+import { storeToRefs } from 'pinia'
 
 const iconsColor = 'rgb(0, 168, 90)'
-const runsData = ref()
-const runsTotalDistance = ref(0)
+const runsStore = useRunsStore()
+const { runItems, runsTotalDistance } = storeToRefs(runsStore)
 
 const openAddNewRunDialog = async () => {
   console.log('TODO: Open Add Run Dialog')
 }
 
 onMounted(async () => {
-  // runsData.value = await fetchJsonData('runsData.json')
-
   //fetch the data from the backend server /runs endpoint
   try {
-    const response = await axios.get('http://192.168.0.104:3000/runs')
-    runsData.value = response.data
+    const response = await axios.get('http://localhost:3000/runs')
+    runItems.value = response.data
   } catch (err) {
     console.log(`${err}`)
   }
 
   // claculate total distance
-  for (let item in runsData.value) {
-    runsTotalDistance.value += runsData.value[item].distance
+  runsTotalDistance.value = 0
+  for (let item in runItems.value) {
+    runsTotalDistance.value += runItems.value[item].distance
   }
 })
 </script>
