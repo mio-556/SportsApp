@@ -28,6 +28,11 @@ const props = defineProps({
     required: false,
     default: '',
   },
+  textColor: {
+    type: String,
+    required: false,
+    default: '',
+  },
   dataText: {
     required: false,
     default: 'dataText',
@@ -44,8 +49,3 @@ const props = defineProps({
   },
 })
 </script>
-<style scoped>
-.content {
-  font-weight: bold;
-}
-</style>

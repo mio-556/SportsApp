@@ -1,4 +1,4 @@
-@use 'colors';
+@use 'colors' as colors;
 :root {
   $header-hight: 2em;
 
@@ -10,7 +10,7 @@
       grid-row: 1/2;
       height: $header-hight;
       align-content: center;
-      background-color: var(--dark-theme-background-color-darker);
+      background-color: colors.$dark-theme-background-color-darker;
     }
     .mainBodyContainer {
       grid-row: 2/3;

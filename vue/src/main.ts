@@ -1,7 +1,7 @@
 import '@/assets/main.scss'
 import '@/assets/layout.scss'
 import '@/assets/colors.scss'
-// import widgetLib from '@/widgetLib'
+import '@fontsource/montserrat' // Defaults to weight 400
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'

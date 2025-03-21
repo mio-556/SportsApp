@@ -1,9 +1,8 @@
-$background-color-button: rgb(36, 36, 36);
-$text-color-button: rgb(165, 165, 165);
+@use 'colors' as colors;
 
 .mButton {
-  background-color: $background-color-button;
-  color: $text-color-button;
+  background-color: colors.$background-color-button;
+  color: colors.$text-color-button;
   border-radius: 5px;
   border: solid 2px;
   border-left-color: rgb(98, 98, 98);

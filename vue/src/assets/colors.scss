@@ -1,11 +1,11 @@
+$dark-theme-background-color: rgb(20, 20, 20);
+$dark-theme-background-color-darker: rgb(16, 16, 16);
+
+$text-color: rgb(136, 135, 135);
+$header-text-color: rgb(165, 165, 165);
+$link-text-color: $text-color;
 :root {
-  $dark-theme-background-color: rgb(26, 26, 26);
-  --dark-theme-background-color-darker: rgb(20, 20, 20);
-
-  --text-color: rgb(98, 98, 98);
-  --header-text-color: rgb(165, 165, 165);
-  --link-text-color: var(--text-color);
-
   background-color: $dark-theme-background-color;
-  color: var(--text-color);
+  color: $text-color;
+  --text-color: #{$text-color}; //expose as css var
 }

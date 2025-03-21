@@ -124,7 +124,9 @@ const props = defineProps({
 const backgroundColor = computed(() => props.backgroundColor)
 </script>
 <style scoped lang="scss">
+@use '../colors.scss' as colors;
 @use './components.scss';
+@use '../widgets.scss';
 .container {
   display: grid;
   grid-template-columns: 3em 1fr 1fr 3em;
@@ -133,12 +135,11 @@ const backgroundColor = computed(() => props.backgroundColor)
     'containerHeader containerHeader containerHeader containerHeader'
     '. contentDetails contentDetails .';
   border-radius: 5px;
-  border: solid 2px;
-  border-color: var(--m-border-color);
+  border: solid 1px;
+  border-color: colors.$border-color-container;
   margin-bottom: 1em;
   padding: 0.5em 1em 1em 1em;
-  font-weight: bold;
-  background-color: v-bind(backgroundColor);
+  background: v-bind(backgroundColor);
   min-width: 205px;
   max-width: 450px;
   transition: filter 0.3s ease;
@@ -152,6 +153,7 @@ const backgroundColor = computed(() => props.backgroundColor)
   display: flex;
   justify-content: space-between;
   margin-bottom: 1.5em;
+  color: colors.$text-color-light;
 }
 .content-details {
   grid-area: contentDetails;

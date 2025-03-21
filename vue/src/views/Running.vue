@@ -26,7 +26,11 @@
           :data3="item.avgHr"
           unit3="b/m"
           :icons-color="iconsColor"
-          :background-color="index % 2 === 0 ? '#111316' : '#07100a'"
+          :background-color="
+            index % 2 === 0
+              ? 'linear-gradient(283deg, rgba(17,19,22,1) 22%, rgba(0,54,69,1) 62%, rgba(17,19,22,1) 100%)'
+              : 'linear-gradient(283deg, rgba(7,16,10,1) 22%, rgba(0,62,21,1) 62%, rgba(7,16,10,1) 100%)'
+          "
         />
       </div>
     </div>
@@ -44,7 +48,7 @@ import { mdiRun, mdiMapMarkerDistance, mdiShoeSneaker, mdiHeartPulse } from '@md
 import { useRunsStore } from '@/stores/running'
 import { storeToRefs } from 'pinia'
 
-const iconsColor = 'rgb(0, 168, 90)'
+const iconsColor = 'rgb(0, 168, 64)'
 const runsStore = useRunsStore()
 const { runItems, runsTotalDistance } = storeToRefs(runsStore)
 
