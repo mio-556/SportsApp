@@ -1,6 +1,7 @@
 // Example usingn Express.js
 import express from "express";
 import runsRoute from "./routes/api/runs.js";
+import lastActivitiesRoute from "./routes/api/lastActivities.js";
 const app = express();
 
 app.use((req, res, next) => {
@@ -23,6 +24,7 @@ app.get("/", (request, response) => {
 
 // Use route files
 app.use("/runs", runsRoute);
+app.use("/lastActivities", lastActivitiesRoute);
 
 // Specifying the port and listen
 const port = process.env.PORT || 3000;

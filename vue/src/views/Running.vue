@@ -40,7 +40,6 @@
 </template>
 
 <script setup>
-import { fetchJsonData } from '@/helpers/dataFetch'
 import axios from 'axios'
 import widgets from '@/widgetLib'
 import { onMounted, ref } from 'vue'

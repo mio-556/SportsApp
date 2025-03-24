@@ -1,10 +1,13 @@
 <template>
   <div class="container">
     <div class="container-header">
-      <div id="header-item-left">
+      <div class="header-item-left">
+        <div class="header-item-left-icon">
+          <MSvg v-if="props.svgIconHeader" :d="props.svgIconHeader" :fill="props.iconsColor" />
+        </div>
         {{ props.headerText }}
       </div>
-      <div id="header-item-right">
+      <div class="header-item-right">
         {{ props.headerDate }}
       </div>
     </div>
@@ -42,6 +45,7 @@
 <script setup language="ts">
 import { computed } from 'vue'
 import MActivitySubItem from './mActivitySubItem.vue'
+import MSvg from '../images/mSvg.vue'
 
 const props = defineProps({
   headerText: {
@@ -63,6 +67,11 @@ const props = defineProps({
     default: '',
   },
   text3: {
+    type: String,
+    required: false,
+    default: '',
+  },
+  svgIconHeader: {
     type: String,
     required: false,
     default: '',
@@ -152,8 +161,17 @@ const backgroundColor = computed(() => props.backgroundColor)
   grid-area: containerHeader;
   display: flex;
   justify-content: space-between;
+  padding-top: 0.5em;
   margin-bottom: 1.5em;
   color: colors.$text-color-light;
+  .header-item-left {
+    display: flex;
+    align-items: start;
+    .header-item-left-icon {
+      min-width: 2.5em;
+      align-self: end;
+    }
+  }
 }
 .content-details {
   grid-area: contentDetails;
@@ -164,11 +182,18 @@ const backgroundColor = computed(() => props.backgroundColor)
 .content-details-item {
   max-width: 50%;
   flex: 50%;
+  margin-bottom: 0.5em;
 }
 @media (max-width: 700px) {
   .container-header {
     flex-direction: column;
-    gap: 0.5em;
+    margin-bottom: 2em;
+    .header-item-left {
+      justify-content: center;
+    }
+    .header-item-right {
+      text-align: center;
+    }
   }
 
   .content-details-item {
