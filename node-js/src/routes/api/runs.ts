@@ -13,7 +13,7 @@ router.get("/", async (request, response) => {
     // );
     // const parsedData = JSON.parse(runsData);
     // console.log(parsedData);
-    response.json("Runs will be here");
+    response.json("Runs will be here soon");
   } catch (err) {
     response.status(500).json({ err: "Error reading the JSON data file" });
   }

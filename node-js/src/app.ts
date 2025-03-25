@@ -1,24 +1,27 @@
 // Example usingn Express.js
-import express from "express";
+import express, { Request, Response, RequestHandler } from "express";
 import runsRoute from "./routes/api/runs.js";
 import lastActivitiesRoute from "./routes/api/lastActivities.js";
 const app = express();
 
-app.use((req, res, next) => {
+const exampleMiddleware: RequestHandler = (req, res, next): void => {
   res.header("Access-Control-Allow-Origin", "*"); // Allow all origins
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
   // Handle preflight OPTIONS requests
   if (req.method === "OPTIONS") {
-    return res.sendStatus(204);
+    res.sendStatus(204);
+    return;
   }
 
   next();
-});
+};
+
+app.use(exampleMiddleware);
 
 // Defining the routes
-app.get("/", (request, response) => {
+app.get("/", (request: Request, response: Response) => {
   response.send("<h3>Express.js server.</h3>");
 });
 
