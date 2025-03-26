@@ -10,18 +10,55 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+
 model User {
   id    Int     @id @default(autoincrement())
-  email String  @unique
   name  String?
-  posts Post[]
+  nick_name String @unique
+  runActivities RunActivity[]
+  bikeActivities BikeActivity[]
+  coldBaths ColdBaths[]
 }
 
-model Post {
-  id        Int     @id @default(autoincrement())
-  title     String
-  content   String?
-  published Boolean @default(false)
-  author    User    @relation(fields: [authorId], references: [id])
-  authorId  Int
+
+model RunActivity {
+  id  Int @id @default(autoincrement())
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+  dateTime DateTime
+  title String
+  totalTime String?
+  description String?
+  distance Float
+  shoes String?
+  runType String
+}
+
+model BikeActivity {
+  id  Int @id @default(autoincrement())
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+  dateTime DateTime
+  title String
+  totalTime String?
+  description String?
+  distance Float
+  bikeType String?
+  rideType  String?
+}
+
+model ColdBaths {
+  id  Int @id @default(autoincrement())
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+  dateTime DateTime
+  totalTime String?
+  type ColdBathType
+  description String?
+  distance Float?
+}
+
+enum ColdBathType {
+  SWIM
+  BATH
 }
