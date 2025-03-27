@@ -23,7 +23,7 @@
           :data2="item.shoes"
           text3="Avg hr"
           :svgIcon3="mdiHeartPulse"
-          :data3="item.avgHr"
+          :data3="item.avgHeartRate"
           unit3="b/m"
           :icons-color="iconsColor"
           :background-color="

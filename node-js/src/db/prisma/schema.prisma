@@ -32,6 +32,7 @@ model RunActivity {
   distance Float
   shoes String?
   runType String
+  avgHeartRate Int?
 }
 
 model BikeActivity {
@@ -45,6 +46,7 @@ model BikeActivity {
   distance Float
   bikeType String?
   rideType  String?
+  avgHeartRate Int?
 }
 
 model ColdBaths {
@@ -56,6 +58,7 @@ model ColdBaths {
   type ColdBathType
   description String?
   distance Float?
+  avgHeartRate Int?
 }
 
 enum ColdBathType {
