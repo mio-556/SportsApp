@@ -11,7 +11,18 @@ export const getUserActivitiesData = async (userId: number) => {
   });
 };
 
+// get all activities of specific type
+export const getUserActivityData = async (
+  userId: number,
+  activityName: string
+) => {
+  return await prisma.user.findUnique({
+    where: { id: userId },
+    include: {
+      [activityName]: true,
+    },
+  });
+};
+
 // TODO:
 // get last activities from database
-
-// get activities from database
