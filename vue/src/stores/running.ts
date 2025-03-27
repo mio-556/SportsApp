@@ -1,9 +1,16 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
+
+type Activity = {
+  // TODO: add more items
+  distance?: number
+}
 
 export const useRunsStore = defineStore('runsStore', () => {
-  const runItems = ref({})
-  const runsTotalDistance = ref(0)
+  const runItems = ref<Activity[]>([])
+  const totalDistance = computed(() => {
+    return runItems.value.reduce((total, item) => total + (item.distance ?? 0), 0)
+  })
 
-  return { runItems, runsTotalDistance }
+  return { runItems, totalDistance }
 })

@@ -4,16 +4,16 @@
       title="Running"
       :svg="mdiRun"
       :icon-color="iconsColor"
-      :total-distance="runsTotalDistance"
+      :total-distance="totalDistance"
       unit="km"
       @add-new-button-clicked="openAddNewRunDialog"
     />
 
     <div v-if="runItems">
-      <div v-for="(item, itemName, index) in runItems" :key="item">
+      <div v-for="(item, index) in runItems" :key="item">
         <widgets.mActivitySummary
-          :header-text="item.description"
-          :header-date="itemName"
+          :header-text="item.title"
+          :header-date="item.dateTime"
           text1="Distance"
           :svgIcon1="mdiMapMarkerDistance"
           :data1="item.distance"
@@ -49,7 +49,7 @@ import { storeToRefs } from 'pinia'
 
 const iconsColor = 'rgb(0, 168, 64)'
 const runsStore = useRunsStore()
-const { runItems, runsTotalDistance } = storeToRefs(runsStore)
+const { runItems, totalDistance } = storeToRefs(runsStore)
 
 const openAddNewRunDialog = async () => {
   console.log('TODO: Open Add Run Dialog')
@@ -58,16 +58,10 @@ const openAddNewRunDialog = async () => {
 onMounted(async () => {
   //fetch the data from the backend server /runs endpoint
   try {
-    const response = await axios.get('http://localhost:3000/runs')
-    runItems.value = response.data
+    const response = await axios.get('http://localhost:3000/activities/user/1/runActivities')
+    runItems.value = response.data.runActivities
   } catch (err) {
     console.log(`${err}`)
-  }
-
-  // claculate total distance
-  runsTotalDistance.value = 0
-  for (let item in runItems.value) {
-    runsTotalDistance.value += runItems.value[item].distance
   }
 })
 </script>
