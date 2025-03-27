@@ -1,5 +1,6 @@
 // Example usingn Express.js
 import express, { Request, Response, RequestHandler } from "express";
+import usersRoute from "./routes/api/users.js";
 import runsRoute from "./routes/api/runs.js";
 import lastActivitiesRoute from "./routes/api/lastActivities.js";
 const app = express();
@@ -26,7 +27,7 @@ app.get("/", (request: Request, response: Response) => {
 });
 
 // Use route files
-app.use("/runs", runsRoute);
+app.use("/users", usersRoute);
 app.use("/lastActivities", lastActivitiesRoute);
 
 export default app;
