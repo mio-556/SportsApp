@@ -9,8 +9,8 @@
       @add-new-button-clicked="openAddNewRunDialog"
     />
 
-    <div v-if="runItems">
-      <div v-for="(item, index) in runItems" :key="item">
+    <div v-if="activities">
+      <div v-for="(item, index) in activities" :key="item">
         <widgets.mActivitySummary
           :header-text="item.title"
           :header-date="item.dateTime"
@@ -44,22 +44,22 @@ import axios from 'axios'
 import widgets from '@/widgetLib'
 import { onMounted, ref } from 'vue'
 import { mdiRun, mdiMapMarkerDistance, mdiShoeSneaker, mdiHeartPulse } from '@mdi/js'
-import { useRunsStore } from '@/stores/running'
+import { useRunsStore } from '@/stores/runsStore'
 import { storeToRefs } from 'pinia'
 
 const iconsColor = 'rgb(0, 168, 64)'
 const runsStore = useRunsStore()
-const { runItems, totalDistance } = storeToRefs(runsStore)
+const { activities, totalDistance } = storeToRefs(runsStore)
 
 const openAddNewRunDialog = async () => {
   console.log('TODO: Open Add Run Dialog')
 }
 
 onMounted(async () => {
-  //fetch the data from the backend server /runs endpoint
+  //fetch the data from the backend server
   try {
     const response = await axios.get('http://localhost:3000/activities/user/1/runActivities')
-    runItems.value = response.data.runActivities
+    activities.value = response.data.runActivities
   } catch (err) {
     console.log(`${err}`)
   }
