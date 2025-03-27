@@ -8,7 +8,7 @@
         {{ props.headerText }}
       </div>
       <div class="header-item-right">
-        {{ props.headerDate }}
+        {{ formattedDate }}
       </div>
     </div>
     <div class="content-details">
@@ -46,6 +46,7 @@
 import { computed } from 'vue'
 import MActivitySubItem from './mActivitySubItem.vue'
 import MSvg from '../images/mSvg.vue'
+import { format } from 'date-fns'
 
 const props = defineProps({
   headerText: {
@@ -129,6 +130,9 @@ const props = defineProps({
     default: '',
   },
 })
+const formattedDate = !isNaN(new Date(props.headerDate))
+  ? format(new Date(props.headerDate), 'dd-MM-yyyy HH:mm')
+  : props.headerDate
 
 const backgroundColor = computed(() => props.backgroundColor)
 </script>
