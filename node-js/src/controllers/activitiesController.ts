@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import {
   getUserActivitiesData,
   getUserActivityData,
-} from "../db/services/activitesService.js";
+} from "../db/services/activitiesService.js";
 
 // get all user's activities
 export const getUserActivities = async (req: Request, res: Response) => {
