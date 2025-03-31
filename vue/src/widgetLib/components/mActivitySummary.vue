@@ -137,7 +137,7 @@ const formattedDate = !isNaN(new Date(props.headerDate))
 const backgroundColor = computed(() => props.backgroundColor)
 </script>
 <style scoped lang="scss">
-@use '../colors.scss' as colors;
+@use '../colors.scss';
 @use './components.scss';
 @use '../widgets.scss';
 .container {
