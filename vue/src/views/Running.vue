@@ -1,4 +1,17 @@
 <template>
+  <widgets.mDialog
+    :is-open="isNewPostDialogOpen"
+    :click-outside-to-close="false"
+    @close="isNewPostDialogOpen = false"
+  >
+    <template #header>Add new</template>
+    <template #body>Dialog text</template>
+    <template #footer>
+      <widgets.mButton text="Close" @clicked="isNewPostDialogOpen = false" />
+      <widgets.mButton text="Add" @clicked="" />
+    </template>
+  </widgets.mDialog>
+
   <div class="mainBodyCenterContainer">
     <widgets.mActivityHeader
       title="Running"
@@ -50,9 +63,10 @@ import { storeToRefs } from 'pinia'
 const iconsColor = 'rgb(0, 168, 64)'
 const runsStore = useRunsStore()
 const { activities, totalDistance } = storeToRefs(runsStore)
+const isNewPostDialogOpen = ref(false)
 
-const openAddNewRunDialog = async () => {
-  console.log('TODO: Open Add Run Dialog')
+const openAddNewRunDialog = () => {
+  isNewPostDialogOpen.value = true
 }
 
 onMounted(async () => {
