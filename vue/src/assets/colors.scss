@@ -1,8 +1,12 @@
 $dark-theme-background-color: rgb(20, 20, 20);
 $dark-theme-background-color-darker: rgb(16, 16, 16);
+$dark-theme-background-color-lighter: rgb(25, 25, 25);
 
 $selected-theme-background-color: $dark-theme-background-color;
 $selected-theme-background-color-darker: $dark-theme-background-color-darker;
+$dark-theme-background-color-lighter: $dark-theme-background-color-lighter;
+
+$selected-theme-inputs-background-color: $dark-theme-background-color-lighter;
 
 $text-color: rgb(136, 135, 135);
 $header-text-color: rgb(165, 165, 165);
@@ -15,4 +19,5 @@ $link-text-color: $text-color;
   --header-text-color: #{$header-text-color};
   --main-background-color: #{$selected-theme-background-color};
   --main-background-color-darker: #{$selected-theme-background-color-darker};
+  --inputs-background-color: #{$selected-theme-inputs-background-color};
 }

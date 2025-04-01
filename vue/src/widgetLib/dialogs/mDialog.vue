@@ -36,7 +36,7 @@ const closeDialog = () => {
 </script>
 
 <style scoped lang="scss">
-@use 'components';
+@use '../widgets';
 @use '../colors';
 $header-hight: 2em;
 $footer-heigh: 3em;
@@ -61,8 +61,8 @@ $footer-heigh: 3em;
   top: 20vh;
   left: 50vw;
   transform: translateX(-50%);
-  width: components.$dialog-width;
-  height: components.$dialog-height;
+  width: widgets.$dialog-width;
+  height: widgets.$dialog-height;
   border: solid 1px;
   border-color: colors.$border-color-container;
   background-color: var(--main-background-color);
@@ -78,7 +78,8 @@ $footer-heigh: 3em;
     background-color: var(--main-background-color-darker);
   }
   .dialog-body {
-    padding: 0.5em;
+    padding: 0.7em;
+    padding-top: 1em;
     flex-grow: 1;
   }
   .dialog-footer {

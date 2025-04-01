@@ -1,16 +1,5 @@
 <template>
-  <widgets.mDialog
-    :is-open="isNewPostDialogOpen"
-    :click-outside-to-close="false"
-    @close="isNewPostDialogOpen = false"
-  >
-    <template #header>Add new</template>
-    <template #body>Dialog text</template>
-    <template #footer>
-      <widgets.mButton text="Close" @clicked="isNewPostDialogOpen = false" />
-      <widgets.mButton text="Add" @clicked="" />
-    </template>
-  </widgets.mDialog>
+  <widgets.mAddActivityDialog v-model:is-open="isNewPostDialogOpen" />
 
   <div class="mainBodyCenterContainer">
     <widgets.mActivityHeader
