@@ -11,7 +11,7 @@
           <div>Title</div>
           <widgets.mTextInput
             v-model:input-text="activityTitle"
-            :controls-size="widgets.ControlsSizes.LARGE"
+            :controls-size="widgets.ControlSizes.LARGE"
           />
         </div>
 
@@ -19,14 +19,14 @@
           <div>Distance [km]</div>
           <widgets.mNumericInput
             v-model:input-value="activityDistance"
-            :controls-size="widgets.ControlsSizes.SMALL"
+            :controls-size="widgets.ControlSizes.SMALL"
           />
         </div>
         <div class="table-row">
           <div>Avg.HeartRate [b/m]</div>
           <widgets.mNumericInput
             v-model:input-value="activityAvgHR"
-            :controls-size="widgets.ControlsSizes.SMALL"
+            :controls-size="widgets.ControlSizes.SMALL"
           />
         </div></div
     ></template>
@@ -47,13 +47,17 @@
 import widgets from '@/widgetLib'
 
 import { ref } from 'vue'
-import type { RunActivity } from '@/types/activityTypes'
+// import type { ActivityType, RunActivity } from '@/types/activityTypes'
 
 const props = defineProps({
   isOpen: {
     type: Boolean,
     default: false,
   },
+  // activityType: {
+  //   type: ActivityType,
+  //   default:
+  // }
 })
 //needed for two way binding regarding the open state
 const emits = defineEmits(['update:isOpen'])

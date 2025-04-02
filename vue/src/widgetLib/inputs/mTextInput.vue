@@ -8,8 +8,8 @@
 </template>
 
 <script setup lang="ts">
-import { ControlsSizes } from '../constants/constants'
-import type { ControlsSize } from '../types/types'
+import { ControlSizes } from '../constants/constants'
+import type { ControlSize } from '../types/types'
 
 const props = defineProps({
   inputText: {
@@ -18,10 +18,10 @@ const props = defineProps({
   },
   controlsSize: {
     type: String,
-    validator(value: ControlsSize) {
-      return Object.values(ControlsSizes).includes(value)
+    validator(value: ControlSize) {
+      return Object.values(ControlSizes).includes(value)
     },
-    default: ControlsSizes.MEDIUM,
+    default: ControlSizes.MEDIUM,
   },
 })
 const emits = defineEmits(['update:inputText'])

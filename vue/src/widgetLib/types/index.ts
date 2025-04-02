@@ -1,3 +1,3 @@
-import type { ControlsSize } from './types'
+import type { ControlSize } from './types'
 
-export type { ControlsSize }
+export type { ControlSize }

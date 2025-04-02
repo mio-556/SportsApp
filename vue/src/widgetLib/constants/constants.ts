@@ -1,4 +1,4 @@
-export const ControlsSizes = {
+export const ControlSizes = {
   SMALL: 'small',
   MEDIUM: 'medium',
   LARGE: 'large',

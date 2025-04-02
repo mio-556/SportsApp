@@ -8,7 +8,8 @@ export const createActivityStore = <T extends BaseActivity>(storeId: string) => 
     const totalDistance = computed(() => {
       return activities.value.reduce((total, item) => total + (item.distance ?? 0), 0)
     })
+    const newActivity = ref<T>()
 
-    return { activities, totalDistance }
+    return { activities, totalDistance, newActivity }
   })
 }

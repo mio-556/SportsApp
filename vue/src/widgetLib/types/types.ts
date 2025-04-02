@@ -1,3 +1,3 @@
-import { ControlsSizes } from '../constants/constants'
+import { ControlSizes } from '../constants/constants'
 
-export type ControlsSize = (typeof ControlsSizes)[keyof typeof ControlsSizes]
+export type ControlSize = (typeof ControlSizes)[keyof typeof ControlSizes]

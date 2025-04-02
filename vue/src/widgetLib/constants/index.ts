@@ -1,3 +1,3 @@
-import { ControlsSizes } from './constants'
+import { ControlSizes } from './constants'
 
-export default { ControlsSizes }
+export default { ControlSizes }
