@@ -3,6 +3,8 @@ import components from './components'
 import images from './images'
 import inputs from './inputs'
 import dialogs from './dialogs'
+import constants from './constants'
+import * as types from './types'
 
 export default {
   ...buttons,
@@ -10,4 +12,6 @@ export default {
   ...images,
   ...inputs,
   ...dialogs,
+  ...constants,
+  ...types,
 }

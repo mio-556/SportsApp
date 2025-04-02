@@ -1,5 +1,6 @@
 @use 'colors' as colors;
 
+$control-widget-width-small: 6em;
 $control-widget-width-medium: 8em;
 $control-widget-width-large: 12em;
 
@@ -43,4 +44,14 @@ $dialog-height: 25em;
   border-bottom-color: rgb(98, 98, 98);
   padding-left: 0.3em;
   color: var(--header-text-color);
+}
+//control sizes
+.small {
+  width: $control-widget-width-small;
+}
+.medium {
+  width: $control-widget-width-medium;
+}
+.large {
+  width: $control-widget-width-large;
 }
