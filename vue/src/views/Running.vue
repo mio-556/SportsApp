@@ -1,5 +1,5 @@
 <template>
-  <MAddActivityDialog v-model:is-open="isNewPostDialogOpen" :activity-type="ActivityTypes.RUN" />
+  <MAddActivityDialog v-model:is-open="isNewPostDialogOpen" :activity-type="ActivityNames.RUN" />
 
   <div class="mainBodyCenterContainer">
     <widgets.mActivityHeader
@@ -49,11 +49,11 @@ import { mdiRun, mdiMapMarkerDistance, mdiShoeSneaker, mdiHeartPulse } from '@md
 import { useRunsStore } from '@/stores/runsStore'
 import { storeToRefs } from 'pinia'
 import MAddActivityDialog from '@/components/mAddActivityDialog.vue'
-import { ActivityTypes } from '@/constants/constants'
+import { ActivityNames } from '@/constants/constants'
 
 const iconsColor = 'rgb(0, 168, 64)'
 const runsStore = useRunsStore()
-const { activities } = storeToRefs(runsStore)
+const { activities, newActivity } = storeToRefs(runsStore)
 const isNewPostDialogOpen = ref(false)
 
 const openAddNewRunDialog = () => {

@@ -47,18 +47,21 @@
 import widgets from '@/widgetLib'
 
 import { ref, computed } from 'vue'
-import { ActivityTypes } from '@/constants/constants'
+import { ActivityNames } from '@/constants/constants'
 import type { PropType } from 'vue'
-import type { ActivityType } from '@/types/activityTypes'
+import type { ActivityNamesType, ActivityType, BaseActivity } from '@/types/ActivityTypes'
 
 const props = defineProps({
   isOpen: {
     type: Boolean,
     default: false,
   },
-  activityType: {
-    type: String as PropType<ActivityType>,
-    default: ActivityTypes.RUN,
+  ActivityNames: {
+    type: String as PropType<ActivityNamesType>,
+    default: ActivityNames.RUN,
+  },
+  newActivity: {
+    type: ref as PropType<ActivityType>,
   },
 })
 //needed for two way binding regarding the open state
@@ -68,7 +71,7 @@ const activityTitle = ref('')
 const activityDistance = ref(0)
 const activityAvgHR = ref(0)
 const activityName = computed(() => {
-  return props.activityType.charAt(0).toUpperCase() + props.activityType.slice(1)
+  return props.ActivityNames.charAt(0).toUpperCase() + props.ActivityNames.slice(1)
 })
 </script>
 <style scoped lang="scss">

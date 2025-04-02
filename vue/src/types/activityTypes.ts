@@ -1,4 +1,4 @@
-import { ActivityTypes } from '@/constants/constants'
+import { ActivityNames } from '@/constants/constants'
 
 export type BaseActivity = {
   // TODO: add more items
@@ -21,4 +21,5 @@ export type SwimActivity = BaseActivity & {
   swimType?: string
 }
 
-export type ActivityType = (typeof ActivityTypes)[keyof typeof ActivityTypes]
+export type ActivityNamesType = (typeof ActivityNames)[keyof typeof ActivityNames]
+export type ActivityType = RunActivity | BikeActivity | SwimActivity
