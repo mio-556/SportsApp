@@ -4,11 +4,19 @@ export type BaseActivity = {
   // TODO: add more items
   title: string
   distance?: number
+  avgHeartRate?: number
+}
+// for initializing purpose
+export const defaultBaseActivity: BaseActivity = {
+  title: '',
+  distance: 0,
+  avgHeartRate: 0,
 }
 
 export type RunActivity = BaseActivity & {
   shoes?: string
   runType?: string
+  cadence?: number
 }
 
 export type BikeActivity = BaseActivity & {

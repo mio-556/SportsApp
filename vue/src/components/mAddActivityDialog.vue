@@ -10,7 +10,7 @@
         <div class="table-row">
           <div>Title</div>
           <widgets.mTextInput
-            v-model:input-text="activityTitle"
+            v-model:input-text="newActivity.title"
             :controls-size="widgets.ControlSizes.LARGE"
           />
         </div>
@@ -18,14 +18,22 @@
         <div class="table-row">
           <div>Distance [km]</div>
           <widgets.mNumericInput
-            v-model:input-value="activityDistance"
+            v-model:input-value="newActivity.distance"
             :controls-size="widgets.ControlSizes.SMALL"
           />
         </div>
         <div class="table-row">
           <div>Avg.HeartRate [b/m]</div>
           <widgets.mNumericInput
-            v-model:input-value="activityAvgHR"
+            v-model:input-value="newActivity.avgHeartRate"
+            :controls-size="widgets.ControlSizes.SMALL"
+          />
+        </div>
+
+        <div class="table-row">
+          <div>Cadence [s/m]</div>
+          <widgets.mNumericInput
+            v-model:input-value="newActivity.cadence"
             :controls-size="widgets.ControlSizes.SMALL"
           />
         </div></div
@@ -49,7 +57,7 @@ import widgets from '@/widgetLib'
 import { ref, computed } from 'vue'
 import { ActivityNames } from '@/constants/constants'
 import type { PropType } from 'vue'
-import type { ActivityNamesType, ActivityType, BaseActivity } from '@/types/ActivityTypes'
+import type { ActivityNamesType, ActivityType } from '@/types/activityTypes'
 
 const props = defineProps({
   isOpen: {
@@ -61,7 +69,8 @@ const props = defineProps({
     default: ActivityNames.RUN,
   },
   newActivity: {
-    type: ref as PropType<ActivityType>,
+    type: Object as PropType<ActivityType>,
+    required: true,
   },
 })
 //needed for two way binding regarding the open state

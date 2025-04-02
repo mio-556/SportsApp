@@ -1,5 +1,9 @@
 <template>
-  <MAddActivityDialog v-model:is-open="isNewPostDialogOpen" :activity-type="ActivityNames.RUN" />
+  <MAddActivityDialog
+    v-model:is-open="isNewPostDialogOpen"
+    :activity-type="ActivityNames.RUN"
+    :new-activity="newActivity"
+  />
 
   <div class="mainBodyCenterContainer">
     <widgets.mActivityHeader
