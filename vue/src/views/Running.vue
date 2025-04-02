@@ -1,12 +1,12 @@
 <template>
-  <widgets.mAddActivityDialog v-model:is-open="isNewPostDialogOpen" />
+  <MAddActivityDialog v-model:is-open="isNewPostDialogOpen" />
 
   <div class="mainBodyCenterContainer">
     <widgets.mActivityHeader
       title="Running"
       :svg="mdiRun"
       :icon-color="iconsColor"
-      :total-distance="totalDistance"
+      :total-distance="runsStore.totalDistance"
       unit="km"
       @add-new-button-clicked="openAddNewRunDialog"
     />
@@ -48,10 +48,11 @@ import { onMounted, ref } from 'vue'
 import { mdiRun, mdiMapMarkerDistance, mdiShoeSneaker, mdiHeartPulse } from '@mdi/js'
 import { useRunsStore } from '@/stores/runsStore'
 import { storeToRefs } from 'pinia'
+import MAddActivityDialog from '@/components/mAddActivityDialog.vue'
 
 const iconsColor = 'rgb(0, 168, 64)'
 const runsStore = useRunsStore()
-const { activities, totalDistance } = storeToRefs(runsStore)
+const { activities } = storeToRefs(runsStore)
 const isNewPostDialogOpen = ref(false)
 
 const openAddNewRunDialog = () => {
