@@ -1,3 +1,5 @@
+import { ActivityTypes } from '@/constants/constants'
+
 export type BaseActivity = {
   // TODO: add more items
   title: string
@@ -18,3 +20,5 @@ export type SwimActivity = BaseActivity & {
   waterTemperature?: Number
   swimType?: string
 }
+
+export type ActivityType = (typeof ActivityTypes)[keyof typeof ActivityTypes]

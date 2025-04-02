@@ -4,7 +4,7 @@
     :click-outside-to-close="false"
     @close="emits('update:isOpen', false)"
   >
-    <template #header>Add new Running Activity</template>
+    <template #header>Add new {{ activityName }} Activity</template>
     <template #body>
       <div class="table-container">
         <div class="table-row">
@@ -46,18 +46,20 @@
 <script setup lang="ts">
 import widgets from '@/widgetLib'
 
-import { ref } from 'vue'
-// import type { ActivityType, RunActivity } from '@/types/activityTypes'
+import { ref, computed } from 'vue'
+import { ActivityTypes } from '@/constants/constants'
+import type { PropType } from 'vue'
+import type { ActivityType } from '@/types/activityTypes'
 
 const props = defineProps({
   isOpen: {
     type: Boolean,
     default: false,
   },
-  // activityType: {
-  //   type: ActivityType,
-  //   default:
-  // }
+  activityType: {
+    type: String as PropType<ActivityType>,
+    default: ActivityTypes.RUN,
+  },
 })
 //needed for two way binding regarding the open state
 const emits = defineEmits(['update:isOpen'])
@@ -65,6 +67,9 @@ const emits = defineEmits(['update:isOpen'])
 const activityTitle = ref('')
 const activityDistance = ref(0)
 const activityAvgHR = ref(0)
+const activityName = computed(() => {
+  return props.activityType.charAt(0).toUpperCase() + props.activityType.slice(1)
+})
 </script>
 <style scoped lang="scss">
 .table-container {

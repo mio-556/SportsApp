@@ -1,4 +1,4 @@
-export const ActivityType = {
+export const ActivityTypes = {
   RUN: 'run',
   BIKE: 'bike',
   SWIM: 'swim',
