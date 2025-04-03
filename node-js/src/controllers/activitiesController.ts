@@ -21,15 +21,24 @@ export const getUserActivities = async (req: Request, res: Response) => {
 // get user's specific activity
 export const getUserActivity = async (req: Request, res: Response) => {
   try {
-    console.log("request:", req.params);
     const activityData = await getUserActivityData(
       Number(req.params.userId),
       String(req.params.activityName)
     );
     if (!activityData) {
-      res.status(404).json({ message: "Activities not found" });
+      res.status(404).json({ message: "Activity not found" });
     }
     res.json(activityData);
+  } catch (err) {
+    res.status(500).json({ err: "Error fetching data from database" + err });
+  }
+};
+
+//post user's specific activity item
+export const addUserActivity = async (req: Request, res: Response) => {
+  try {
+    res.json("Will create new activity soon!");
+    console.log(req.body);
   } catch (err) {
     res.status(500).json({ err: "Error fetching data from database" + err });
   }
