@@ -15,14 +15,26 @@
           />
         </div>
 
-        <div class="table-row">
+        <div
+          v-if="
+            props.activityName === ActivityNames.RUN || props.activityName === ActivityNames.BIKE
+          "
+          class="table-row"
+        >
           <div>Distance [km]</div>
           <widgets.mNumericInput
             v-model:input-value="newActivity.distance"
             :controls-size="widgets.ControlSizes.SMALL"
           />
         </div>
-        <div class="table-row">
+        <div
+          v-if="
+            props.activityName === ActivityNames.RUN ||
+            props.activityName === ActivityNames.BIKE ||
+            props.activityName === ActivityNames.SWIM
+          "
+          class="table-row"
+        >
           <div>Avg.HeartRate [b/m]</div>
           <widgets.mNumericInput
             v-model:input-value="newActivity.avgHeartRate"
@@ -30,7 +42,7 @@
           />
         </div>
 
-        <div class="table-row">
+        <div v-if="props.activityName === ActivityNames.RUN" class="table-row">
           <div>Cadence [s/m]</div>
           <widgets.mNumericInput
             v-model:input-value="newActivity.cadence"
@@ -64,15 +76,16 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  ActivityName: {
+  activityName: {
     type: String as PropType<ActivityNamesType>,
-    default: ActivityNames.RUN,
+    default: ActivityNames.SWIM,
   },
   newActivity: {
     type: Object as PropType<ActivityType>,
     required: true,
   },
 })
+console.log(props.activityName)
 //needed for two way binding regarding the open state
 const emits = defineEmits(['update:isOpen'])
 
@@ -80,7 +93,7 @@ const activityTitle = ref('')
 const activityDistance = ref(0)
 const activityAvgHR = ref(0)
 const activityName = computed(() => {
-  return props.ActivityName.charAt(0).toUpperCase() + props.ActivityName.slice(1)
+  return props.activityName.charAt(0).toUpperCase() + props.activityName.slice(1)
 })
 </script>
 <style scoped lang="scss">

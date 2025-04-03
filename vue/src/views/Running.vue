@@ -10,7 +10,7 @@
       title="Running"
       :svg="mdiRun"
       :icon-color="iconsColor"
-      :total-distance="runsStore.totalDistance"
+      :total-distance="runStore.totalDistance"
       unit="km"
       @add-new-button-clicked="openAddNewRunDialog"
     />
@@ -50,14 +50,14 @@ import axios from 'axios'
 import widgets from '@/widgetLib'
 import { onMounted, ref } from 'vue'
 import { mdiRun, mdiMapMarkerDistance, mdiShoeSneaker, mdiHeartPulse } from '@mdi/js'
-import { useRunsStore } from '@/stores/runsStore'
+import { useRunStore } from '@/stores/runStore'
 import { storeToRefs } from 'pinia'
 import MAddActivityDialog from '@/components/mAddActivityDialog.vue'
 import { ActivityNames } from '@/constants/constants'
 
 const iconsColor = 'rgb(0, 168, 64)'
-const runsStore = useRunsStore()
-const { activities, newActivity } = storeToRefs(runsStore)
+const runStore = useRunStore()
+const { activities, newActivity } = storeToRefs(runStore)
 const isNewPostDialogOpen = ref(false)
 
 const openAddNewRunDialog = () => {
