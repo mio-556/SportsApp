@@ -1,4 +1,5 @@
+import { ActivityNames } from '@/constants/constants'
 import { createActivityStore } from './activityStore'
 import type { RunActivity } from '@/types/activityTypes'
 
-export const useRunsStore = createActivityStore<RunActivity>('runsStore')
+export const useRunsStore = createActivityStore<RunActivity>(ActivityNames.RUN)

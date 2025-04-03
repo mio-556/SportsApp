@@ -64,7 +64,7 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  ActivityNames: {
+  ActivityName: {
     type: String as PropType<ActivityNamesType>,
     default: ActivityNames.RUN,
   },
@@ -80,7 +80,7 @@ const activityTitle = ref('')
 const activityDistance = ref(0)
 const activityAvgHR = ref(0)
 const activityName = computed(() => {
-  return props.ActivityNames.charAt(0).toUpperCase() + props.ActivityNames.slice(1)
+  return props.ActivityName.charAt(0).toUpperCase() + props.ActivityName.slice(1)
 })
 </script>
 <style scoped lang="scss">

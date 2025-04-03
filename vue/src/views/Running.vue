@@ -1,7 +1,7 @@
 <template>
   <MAddActivityDialog
     v-model:is-open="isNewPostDialogOpen"
-    :activity-type="ActivityNames.RUN"
+    :activity-name="ActivityNames.RUN"
     :new-activity="newActivity"
   />
 
