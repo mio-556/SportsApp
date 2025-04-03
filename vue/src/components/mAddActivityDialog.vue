@@ -52,14 +52,7 @@
     ></template>
     <template #footer>
       <widgets.mButton text="Close" @clicked="emits('update:isOpen', false)" />
-      <widgets.mButton
-        text="Add"
-        @clicked="
-          console.log(
-            `New activity add request: title: ${activityTitle}, distance: ${activityDistance}, avgHR: ${activityAvgHR}`,
-          )
-        "
-      />
+      <widgets.mButton text="Add" @clicked="addActivityClicked()" />
     </template>
   </widgets.mDialog>
 </template>
@@ -70,6 +63,8 @@ import { ref, computed } from 'vue'
 import { ActivityNames } from '@/constants/constants'
 import type { PropType } from 'vue'
 import type { ActivityNamesType, ActivityType } from '@/types/activityTypes'
+import axios from 'axios'
+import { BACKEND_URL } from '@/constants/api'
 
 const props = defineProps({
   isOpen: {
@@ -85,7 +80,6 @@ const props = defineProps({
     required: true,
   },
 })
-console.log(props.activityName)
 //needed for two way binding regarding the open state
 const emits = defineEmits(['update:isOpen'])
 
@@ -95,6 +89,16 @@ const activityAvgHR = ref(0)
 const activityName = computed(() => {
   return props.activityName.charAt(0).toUpperCase() + props.activityName.slice(1)
 })
+
+const addActivityClicked = async () => {
+  try {
+    const response = await axios.post(`${BACKEND_URL}/activities/user/1/runActivities/add`, {
+      ...props.newActivity,
+    })
+  } catch (err) {
+    console.log(`${err}`)
+  }
+}
 </script>
 <style scoped lang="scss">
 .table-container {
