@@ -54,6 +54,7 @@ import { useRunStore } from '@/stores/runStore'
 import { storeToRefs } from 'pinia'
 import MAddActivityDialog from '@/components/mAddActivityDialog.vue'
 import { ActivityNames } from '@/constants/constants'
+import { BACKEND_URL } from '@/constants/api'
 
 const iconsColor = 'rgb(0, 168, 64)'
 const runStore = useRunStore()
@@ -67,7 +68,7 @@ const openAddNewRunDialog = () => {
 onMounted(async () => {
   //fetch the data from the backend server
   try {
-    const response = await axios.get('http://localhost:3000/activities/user/1/runActivities')
+    const response = await axios.get(`${BACKEND_URL}/activities/user/1/runActivities`)
     activities.value = response.data.runActivities
   } catch (err) {
     console.log(`${err}`)
