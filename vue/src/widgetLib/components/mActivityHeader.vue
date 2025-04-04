@@ -8,8 +8,11 @@
       :unit="props.unit"
     />
   </div>
-  <div style="padding-bottom: 0.5em; margin-bottom: 1em">
+  <div
+    style="padding-bottom: 0.5em; margin-bottom: 1em; display: flex; justify-content: space-between"
+  >
     <MButton text="Add new" @clicked="addNewButtonClicked" />
+    <MButton text="Delete" @clicked="deleteButtonClicked" />
   </div>
 </template>
 
@@ -44,10 +47,14 @@ const props = defineProps({
     default: '',
   },
 })
-const emits = defineEmits(['addNewButtonClicked'])
+const emits = defineEmits(['addNewButtonClicked', 'deleteButtonClicked'])
 
 const addNewButtonClicked = () => {
   emits('addNewButtonClicked')
+}
+
+const deleteButtonClicked = () => {
+  emits('deleteButtonClicked')
 }
 </script>
 <style scoped lang="scss">

@@ -14,6 +14,7 @@
       :total-distance="runStore.totalDistance"
       unit="km"
       @add-new-button-clicked="openAddNewRunDialog"
+      @delete-button-clicked="deleteActivityClicked"
     />
 
     <div v-if="activityLoaded && activities.length > 0">
@@ -70,6 +71,21 @@ const activityLoaded = ref(false)
 
 const openAddNewRunDialog = () => {
   isNewPostDialogOpen.value = true
+}
+
+const deleteActivityClicked = async () => {
+  try {
+    const response = await axios.delete(
+      `${BACKEND_URL}/activities/runActivity/${selectedActivityId.value}`,
+    )
+    // when activity added sucessfully close the dialog
+    if (response.data.message === 'Success') {
+      await getActivities()
+    }
+  } catch (err) {
+    activityLoaded.value = true
+    console.log(`${err}`)
+  }
 }
 
 //fetch the data from the backend server and save to store
