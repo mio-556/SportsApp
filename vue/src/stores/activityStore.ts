@@ -29,7 +29,8 @@ export const createActivityStore = <T extends BaseActivity>(storeType: ActivityN
     })
     // create newActivity and initialize it by the default object
     const newActivity = ref<T>(createDefaultActivity<T>(storeType))
+    const selectedActivityId = ref(0)
 
-    return { activities, totalDistance, newActivity }
+    return { activities, totalDistance, newActivity, selectedActivityId }
   })
 }

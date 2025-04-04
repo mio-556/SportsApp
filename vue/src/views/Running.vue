@@ -38,6 +38,7 @@
               ? 'linear-gradient(283deg, rgba(17,19,22,1) 22%, rgba(0,54,69,1) 62%, rgba(17,19,22,1) 100%)'
               : 'linear-gradient(283deg, rgba(7,16,10,1) 22%, rgba(0,62,21,1) 62%, rgba(7,16,10,1) 100%)'
           "
+          @on-click="selectedActivityId = item.id"
         />
       </div>
     </div>
@@ -63,7 +64,7 @@ const iconsColor = 'rgb(0, 168, 64)'
 const userStore = useUserStore()
 const runStore = useRunStore()
 const { selectedUser } = storeToRefs(userStore)
-const { activities, newActivity } = storeToRefs(runStore)
+const { activities, newActivity, selectedActivityId } = storeToRefs(runStore)
 const isNewPostDialogOpen = ref(false)
 const activityLoaded = ref(false)
 

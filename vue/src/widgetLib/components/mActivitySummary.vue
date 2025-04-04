@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" @click="emits('onClick')">
     <div class="container-header">
       <div class="header-item-left">
         <div class="header-item-left-icon">
@@ -130,6 +130,8 @@ const props = defineProps({
     default: '',
   },
 })
+
+const emits = defineEmits(['onClick'])
 const formattedDate = !isNaN(new Date(props.headerDate))
   ? format(new Date(props.headerDate), 'dd-MM-yyyy HH:mm')
   : props.headerDate
