@@ -42,5 +42,15 @@ export const addUserActivityData = async (
   });
 };
 
+export const deleteUserActivityData = async (
+  activityName: keyof PrismaClient,
+  activityId: number
+) => {
+  const x = await (prisma as any)[activityName].delete({
+    where: {
+      id: activityId,
+    },
+  });
+};
 // TODO:s
 // get last activities from database

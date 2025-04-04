@@ -4,6 +4,7 @@ import {
   addUserActivityData,
   getUserActivitiesData,
   getUserActivityData,
+  deleteUserActivityData,
 } from "../db/services/activitiesService.js";
 
 // get all user's activities
@@ -41,6 +42,19 @@ export const addUserActivity = async (req: Request, res: Response) => {
   try {
     // TODO: validate data
     await addUserActivityData(req.body, req.params.activityName);
+    res.status(201).json({ message: "Success" });
+  } catch (err) {
+    res.status(500).json({ err: "Error fetching data from database" + err });
+  }
+};
+
+// delete activityItem
+export const deleteUserActivity = async (req: Request, res: Response) => {
+  try {
+    await deleteUserActivityData(
+      req.params.activityName,
+      Number(req.params.activityId)
+    );
     res.status(201).json({ message: "Success" });
   } catch (err) {
     res.status(500).json({ err: "Error fetching data from database" + err });
