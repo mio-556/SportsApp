@@ -25,7 +25,7 @@ export const createActivityStore = <T extends BaseActivity>(storeType: ActivityN
   return defineStore(storeType, () => {
     const activities = ref<T[]>([])
     const totalDistance = computed(() => {
-      return activities.value.reduce((total, item) => total + (item.distance ?? 0), 0)
+      return activities.value.reduce((total, item) => total + (item.distance ?? 0), 0) ?? 0
     })
     // create newActivity and initialize it by the default object
     const newActivity = ref<T>(createDefaultActivity<T>(storeType))

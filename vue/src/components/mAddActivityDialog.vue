@@ -65,6 +65,8 @@ import type { PropType } from 'vue'
 import type { ActivityNamesType, ActivityType } from '@/types/activityTypes'
 import axios from 'axios'
 import { BACKEND_URL } from '@/constants/api'
+import { useUserStore } from '@/stores/userStore'
+import { storeToRefs } from 'pinia'
 
 const props = defineProps({
   isOpen: {
@@ -81,7 +83,10 @@ const props = defineProps({
   },
 })
 //needed for two way binding regarding the open state
-const emits = defineEmits(['update:isOpen'])
+const emits = defineEmits(['update:isOpen', 'activityAdded'])
+
+const userStore = useUserStore()
+const { selectedUser } = storeToRefs(userStore)
 
 const activityTitle = ref('')
 const activityDistance = ref(0)
@@ -94,8 +99,13 @@ const addActivityClicked = async () => {
   try {
     const response = await axios.post(`${BACKEND_URL}/activities/RunActivity/add`, {
       ...props.newActivity,
-      userId: 1,
+      userId: selectedUser.value,
     })
+    // when activity added sucessfully close the dialog
+    if (response.data.message === 'Success') {
+      emits('update:isOpen', false)
+      emits('activityAdded')
+    }
   } catch (err) {
     console.log(`${err}`)
   }

@@ -11,7 +11,7 @@ export const getUserActivities = async (req: Request, res: Response) => {
   try {
     const activityData = await getUserActivitiesData(Number(req.params.userId));
     if (!activityData) {
-      res.status(404).json({ message: "Activities not found" });
+      res.status(201).json({ message: "No Data" });
     }
     res.json(activityData);
   } catch (err) {
@@ -27,7 +27,7 @@ export const getUserActivity = async (req: Request, res: Response) => {
       String(req.params.activityName)
     );
     if (!activityData) {
-      res.status(404).json({ message: "Activity not found" });
+      res.status(201).json({ message: "No Data" });
     } else {
       res.json(activityData);
     }

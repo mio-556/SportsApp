@@ -3,6 +3,7 @@
     v-model:is-open="isNewPostDialogOpen"
     :activity-name="ActivityNames.RUN"
     :new-activity="newActivity"
+    @activity-added="getActivities"
   />
 
   <div class="mainBodyCenterContainer">
@@ -15,7 +16,7 @@
       @add-new-button-clicked="openAddNewRunDialog"
     />
 
-    <div v-if="activities">
+    <div v-if="activityLoaded && activities.length > 0">
       <div v-for="(item, index) in activities" :key="item">
         <widgets.mActivitySummary
           :header-text="item.title"
@@ -40,7 +41,8 @@
         />
       </div>
     </div>
-    <div v-else>Loading data...</div>
+    <div v-else-if="!activityLoaded">Loading data...</div>
+    <div v-else>No activities.</div>
   </div>
   <div class="mainBodyRightContainer"></div>
 </template>
@@ -55,23 +57,43 @@ import { storeToRefs } from 'pinia'
 import MAddActivityDialog from '@/components/mAddActivityDialog.vue'
 import { ActivityNames } from '@/constants/constants'
 import { BACKEND_URL } from '@/constants/api'
+import { useUserStore } from '@/stores/userStore'
 
 const iconsColor = 'rgb(0, 168, 64)'
+const userStore = useUserStore()
 const runStore = useRunStore()
+const { selectedUser } = storeToRefs(userStore)
 const { activities, newActivity } = storeToRefs(runStore)
 const isNewPostDialogOpen = ref(false)
+const activityLoaded = ref(false)
 
 const openAddNewRunDialog = () => {
   isNewPostDialogOpen.value = true
 }
 
-onMounted(async () => {
-  //fetch the data from the backend server
+//fetch the data from the backend server and save to store
+const getActivities = async () => {
+  // clear activity store first
+  if (activities.value?.length > 0) {
+    activities.value.length = 0
+  }
+
   try {
-    const response = await axios.get(`${BACKEND_URL}/activities/user/1/runActivities`)
-    activities.value = response.data.runActivities
+    const response = await axios.get(
+      `${BACKEND_URL}/activities/user/${selectedUser.value}/runActivities`,
+    )
+    activityLoaded.value = true
+    if (response.data.message === 'No Data') {
+      return
+    }
+    activities.value = response.data?.runActivities
   } catch (err) {
+    activityLoaded.value = true
     console.log(`${err}`)
   }
+}
+
+onMounted(async () => {
+  await getActivities()
 })
 </script>
