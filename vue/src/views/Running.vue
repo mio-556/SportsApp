@@ -64,7 +64,7 @@ import { useUserStore } from '@/stores/userStore'
 const iconsColor = 'rgb(0, 168, 64)'
 const userStore = useUserStore()
 const runStore = useRunStore()
-const { selectedUser } = storeToRefs(userStore)
+const { selectedUserId } = storeToRefs(userStore)
 const { activities, newActivity, selectedActivityId } = storeToRefs(runStore)
 const isNewPostDialogOpen = ref(false)
 const activityLoaded = ref(false)
@@ -99,7 +99,7 @@ const getActivities = async () => {
 
   try {
     const response = await axios.get(
-      `${BACKEND_URL}/activities/user/${selectedUser.value}/runActivities`,
+      `${BACKEND_URL}/activities/user/${selectedUserId.value}/runActivities`,
     )
     activityLoaded.value = true
     if (response.data.message === 'No Data') {
@@ -112,7 +112,7 @@ const getActivities = async () => {
   }
 }
 
-watch(selectedUser, async () => {
+watch(selectedUserId, async () => {
   await getActivities()
 })
 

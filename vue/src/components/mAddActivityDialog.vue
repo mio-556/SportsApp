@@ -94,7 +94,7 @@ const props = defineProps({
 const emits = defineEmits(['update:isOpen', 'activityAdded'])
 
 const userStore = useUserStore()
-const { selectedUser } = storeToRefs(userStore)
+const { selectedUserId } = storeToRefs(userStore)
 
 const activityTitle = ref('')
 const activityDistance = ref(0)
@@ -107,7 +107,7 @@ const addActivityClicked = async () => {
   try {
     const response = await axios.post(`${BACKEND_URL}/activities/RunActivity/add`, {
       ...props.newActivity,
-      userId: selectedUser.value,
+      userId: selectedUserId.value,
     })
     // when activity added sucessfully close the dialog
     if (response.data.message === 'Success') {
