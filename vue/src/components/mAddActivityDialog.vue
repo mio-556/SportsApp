@@ -43,6 +43,14 @@
         </div>
 
         <div v-if="props.activityName === ActivityNames.RUN" class="table-row">
+          <div>Shoes</div>
+          <widgets.mTextInput
+            v-model:input-text="newActivity.shoes"
+            :controls-size="widgets.ControlSizes.MEDIUM"
+          />
+        </div>
+
+        <div v-if="props.activityName === ActivityNames.RUN" class="table-row">
           <div>Cadence [s/m]</div>
           <widgets.mNumericInput
             v-model:input-value="newActivity.cadence"
