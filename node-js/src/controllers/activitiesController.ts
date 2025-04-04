@@ -28,8 +28,9 @@ export const getUserActivity = async (req: Request, res: Response) => {
     );
     if (!activityData) {
       res.status(404).json({ message: "Activity not found" });
+    } else {
+      res.json(activityData);
     }
-    res.json(activityData);
   } catch (err) {
     res.status(500).json({ err: "Error fetching data from database" + err });
   }
