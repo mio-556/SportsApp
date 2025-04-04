@@ -1,6 +1,7 @@
 // handling http requests
 import { Request, Response } from "express";
 import {
+  addUserActivityData,
   getUserActivitiesData,
   getUserActivityData,
 } from "../db/services/activitiesService.js";
@@ -37,8 +38,9 @@ export const getUserActivity = async (req: Request, res: Response) => {
 //post user's specific activity item
 export const addUserActivity = async (req: Request, res: Response) => {
   try {
-    res.json("Will create new activity soon!");
-    console.log(req.body);
+    // TODO: validate data
+    await addUserActivityData(req.body, req.params.activityName);
+    res.status(201).json({ message: "Success" });
   } catch (err) {
     res.status(500).json({ err: "Error fetching data from database" + err });
   }

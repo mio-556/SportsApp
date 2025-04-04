@@ -10,6 +10,6 @@ const router = express.Router();
 router.get("/user/:userId", getUserActivities);
 router.get("/user/:userId/:activityName", getUserActivity);
 
-router.post("/user/:userId/:activityName/add", addUserActivity);
+router.post("/:activityName/add", addUserActivity);
 
 export default router;

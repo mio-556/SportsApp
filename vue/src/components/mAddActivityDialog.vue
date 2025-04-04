@@ -92,8 +92,9 @@ const activityName = computed(() => {
 
 const addActivityClicked = async () => {
   try {
-    const response = await axios.post(`${BACKEND_URL}/activities/user/1/runActivities/add`, {
+    const response = await axios.post(`${BACKEND_URL}/activities/RunActivity/add`, {
       ...props.newActivity,
+      userId: 1,
     })
   } catch (err) {
     console.log(`${err}`)

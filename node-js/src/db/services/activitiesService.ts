@@ -1,5 +1,7 @@
+import { Prisma } from "@prisma/client";
 import prisma from "../config/database.js";
 import { ACTIVITY_DEFINITIONS } from "../../constants/activityDefinitions.js";
+import { PrismaClient } from "@prisma/client/extension";
 
 // get all activities from database
 export const getUserActivitiesData = async (userId: number) => {
@@ -24,5 +26,21 @@ export const getUserActivityData = async (
   });
 };
 
-// TODO:
+export const addUserActivityData = async (
+  activityData:
+    | Prisma.RunActivityCreateInput
+    | Prisma.BikeActivityCreateInput
+    | Prisma.ColdBathsCreateInput,
+  // type is one of prisma models
+  activityName: keyof PrismaClient
+) => {
+  // (prisma as any) - workaround for prisma not supporting dynamicall selecting of models
+  await (prisma as any)[activityName].create({
+    data: {
+      ...activityData,
+    },
+  });
+};
+
+// TODO:s
 // get last activities from database

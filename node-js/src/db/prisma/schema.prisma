@@ -25,21 +25,22 @@ model RunActivity {
   id  Int @id @default(autoincrement())
   userId Int
   user User @relation(fields: [userId], references: [id])
-  dateTime DateTime
+  dateTime DateTime?
   title String
   totalTime String?
   description String?
   distance Float
   shoes String?
-  runType String
+  runType String?
   avgHeartRate Int?
+  cadence Int?
 }
 
 model BikeActivity {
   id  Int @id @default(autoincrement())
   userId Int
   user User @relation(fields: [userId], references: [id])
-  dateTime DateTime
+  dateTime DateTime?
   title String
   totalTime String?
   description String?
@@ -53,7 +54,8 @@ model ColdBaths {
   id  Int @id @default(autoincrement())
   userId Int
   user User @relation(fields: [userId], references: [id])
-  dateTime DateTime
+  dateTime DateTime?
+  title String?
   totalTime String?
   type ColdBathType
   description String?
