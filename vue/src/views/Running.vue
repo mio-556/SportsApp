@@ -50,7 +50,7 @@
 <script setup>
 import axios from 'axios'
 import widgets from '@/widgetLib'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { mdiRun, mdiMapMarkerDistance, mdiShoeSneaker, mdiHeartPulse } from '@mdi/js'
 import { useRunStore } from '@/stores/runStore'
 import { storeToRefs } from 'pinia'
@@ -73,6 +73,8 @@ const openAddNewRunDialog = () => {
 
 //fetch the data from the backend server and save to store
 const getActivities = async () => {
+  // reset the states first
+  activityLoaded.value = false
   // clear activity store first
   if (activities.value?.length > 0) {
     activities.value.length = 0
@@ -92,6 +94,10 @@ const getActivities = async () => {
     console.log(`${err}`)
   }
 }
+
+watch(selectedUser, async () => {
+  await getActivities()
+})
 
 onMounted(async () => {
   await getActivities()
