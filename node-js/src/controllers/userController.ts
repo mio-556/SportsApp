@@ -6,7 +6,7 @@ export const getUsersList = async (req: Request, res: Response) => {
   try {
     const users = await getUsers();
     if (!users) {
-      res.status(404).json({ message: "Users not found" });
+      res.status(404).json({ message: "No Data" });
     }
     res.json(users);
   } catch (err) {
