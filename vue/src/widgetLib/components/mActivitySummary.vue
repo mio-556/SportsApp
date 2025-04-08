@@ -1,5 +1,5 @@
 <template>
-  <div class="container" @click="emits('onClick')">
+  <div :class="{ containerSelected: isSelected, container: !isSelected }" @click="emits('onClick')">
     <div class="container-header">
       <div class="header-item-left">
         <div class="header-item-left-icon">
@@ -129,6 +129,11 @@ const props = defineProps({
     required: false,
     default: '',
   },
+  isSelected: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 })
 
 const emits = defineEmits(['onClick'])
@@ -161,6 +166,11 @@ const backgroundColor = computed(() => props.backgroundColor)
 }
 .container:hover {
   filter: brightness(1.8);
+  box-shadow: 0 0 15px 5px rgba(0, 174, 255, 0.1); /* Vibrant glow */
+}
+.containerSelected {
+  @extend .container;
+  filter: brightness(2.1);
   box-shadow: 0 0 15px 5px rgba(0, 174, 255, 0.1); /* Vibrant glow */
 }
 .container-header {
