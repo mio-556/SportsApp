@@ -39,6 +39,7 @@
               ? 'linear-gradient(283deg, rgba(17,19,22,1) 22%, rgba(0,54,69,1) 62%, rgba(17,19,22,1) 100%)'
               : 'linear-gradient(283deg, rgba(7,16,10,1) 22%, rgba(0,62,21,1) 62%, rgba(7,16,10,1) 100%)'
           "
+          :isSelected="selectedActivityId === item.id"
           @on-click="selectedActivityId = item.id"
         />
       </div>
@@ -117,6 +118,7 @@ watch(selectedUserId, async () => {
 })
 
 onMounted(async () => {
+  selectedActivityId.value = 0
   await getActivities()
 })
 </script>
