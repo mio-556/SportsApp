@@ -1,20 +1,22 @@
 <template>
   <transition name="fade">
-    <div id="mDialog" v-if="isOpen">
-      <div class="dialog-backdrop" @click="closeDialog"></div>
+    <teleport to="body">
+      <div id="mDialog" v-if="isOpen">
+        <div class="dialog-backdrop" @click="closeDialog"></div>
 
-      <div class="main-container">
-        <div class="dialog-header">
-          <slot name="header"></slot>
-        </div>
-        <div class="dialog-body">
-          <slot name="body"></slot>
-        </div>
-        <div class="dialog-footer">
-          <slot name="footer"></slot>
+        <div class="main-container">
+          <div class="dialog-header">
+            <slot name="header"></slot>
+          </div>
+          <div class="dialog-body">
+            <slot name="body"></slot>
+          </div>
+          <div class="dialog-footer">
+            <slot name="footer"></slot>
+          </div>
         </div>
       </div>
-    </div>
+    </teleport>
   </transition>
 </template>
 <script setup lang="ts">
@@ -57,7 +59,7 @@ $footer-heigh: 3em;
   display: flex;
   flex-direction: column;
   position: fixed;
-  z-index: 99999;
+  z-index: 9999;
   top: 20vh;
   left: 50vw;
   transform: translateX(-50%);
