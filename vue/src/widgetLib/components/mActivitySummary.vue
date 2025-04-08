@@ -1,49 +1,55 @@
 <template>
-  <div :class="{ containerSelected: isSelected, container: !isSelected }" @click="emits('onClick')">
-    <div class="container-header">
-      <div class="header-item-left">
-        <div class="header-item-left-icon">
-          <MSvg v-if="props.svgIconHeader" :d="props.svgIconHeader" :fill="props.iconsColor" />
+  <transition name="fade">
+    <div
+      v-if="isVisible"
+      :class="{ containerSelected: isSelected, container: !isSelected }"
+      @click="emits('onClick')"
+    >
+      <div class="container-header">
+        <div class="header-item-left">
+          <div class="header-item-left-icon">
+            <MSvg v-if="props.svgIconHeader" :d="props.svgIconHeader" :fill="props.iconsColor" />
+          </div>
+          {{ props.headerText }}
         </div>
-        {{ props.headerText }}
+        <div class="header-item-right">
+          {{ formattedDate }}
+        </div>
       </div>
-      <div class="header-item-right">
-        {{ formattedDate }}
+      <div class="content-details">
+        <div class="content-details-item">
+          <MActivitySubItem
+            :svg="props.svgIcon1"
+            :icon-fill-color="props.iconsColor"
+            :text="props.text1"
+            :data-text="props.data1"
+            :unit="props.unit1"
+          />
+        </div>
+        <div class="content-details-item">
+          <MActivitySubItem
+            :svg="props.svgIcon2"
+            :icon-fill-color="props.iconsColor"
+            :text="props.text2"
+            :data-text="props.data2"
+            :unit="props.unit2"
+          />
+        </div>
+        <div class="content-details-item">
+          <MActivitySubItem
+            :svg="props.svgIcon3"
+            :icon-fill-color="props.iconsColor"
+            :text="props.text3"
+            :data-text="props.data3"
+            :unit="props.unit3"
+          />
+        </div>
       </div>
     </div>
-    <div class="content-details">
-      <div class="content-details-item">
-        <MActivitySubItem
-          :svg="props.svgIcon1"
-          :icon-fill-color="props.iconsColor"
-          :text="props.text1"
-          :data-text="props.data1"
-          :unit="props.unit1"
-        />
-      </div>
-      <div class="content-details-item">
-        <MActivitySubItem
-          :svg="props.svgIcon2"
-          :icon-fill-color="props.iconsColor"
-          :text="props.text2"
-          :data-text="props.data2"
-          :unit="props.unit2"
-        />
-      </div>
-      <div class="content-details-item">
-        <MActivitySubItem
-          :svg="props.svgIcon3"
-          :icon-fill-color="props.iconsColor"
-          :text="props.text3"
-          :data-text="props.data3"
-          :unit="props.unit3"
-        />
-      </div>
-    </div>
-  </div>
+  </transition>
 </template>
 <script setup language="ts">
-import { computed } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 import MActivitySubItem from './mActivitySubItem.vue'
 import MSvg from '../images/mSvg.vue'
 import { format } from 'date-fns'
@@ -142,6 +148,9 @@ const formattedDate = !isNaN(new Date(props.headerDate))
   : props.headerDate
 
 const backgroundColor = computed(() => props.backgroundColor)
+const isVisible = ref(false)
+
+onMounted(() => (isVisible.value = true))
 </script>
 <style scoped lang="scss">
 @use '../colors.scss';
@@ -217,5 +226,17 @@ const backgroundColor = computed(() => props.backgroundColor)
     flex: 100%;
     justify-items: center;
   }
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.4s ease-in-out;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+.fade-enter-to,
+.fade-leave-from {
+  opacity: 1;
 }
 </style>
