@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ActivitiesMenu from '../views/ActivitiesMenu.vue'
 import Activities from '../views/Activities.vue'
+import ActivitiesStrava from '../views/ActivitiesStrava.vue'
 import Running from '../views/Running.vue'
 import Cycling from '../views/Cycling.vue'
 
@@ -18,6 +19,7 @@ const router = createRouter({
       component: ActivitiesMenu,
       children: [
         { path: '/activities', component: Activities },
+        { path: '/activities-strava', component: ActivitiesStrava },
         { path: '/running', component: Running },
         { path: '/cycling', component: Cycling },
       ],

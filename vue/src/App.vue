@@ -34,6 +34,7 @@ const getUsers = async () => {
       <nav class="headerNavigation">
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/activities">Activities</RouterLink>
+        <RouterLink to="/activities-strava">STRAVA activities</RouterLink>
       </nav>
       <nav class="headerNavigationRight">
         <mUserDropdown
