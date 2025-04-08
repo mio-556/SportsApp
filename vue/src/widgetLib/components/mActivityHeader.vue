@@ -9,6 +9,7 @@
     />
   </div>
   <div
+    class="m-activity-header"
     style="padding-bottom: 0.5em; margin-bottom: 1em; display: flex; justify-content: space-between"
   >
     <MButton text="Add new" @clicked="addNewButtonClicked" />
