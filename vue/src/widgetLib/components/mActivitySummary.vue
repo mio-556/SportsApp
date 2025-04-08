@@ -174,12 +174,12 @@ onMounted(() => (isVisible.value = true))
   transition: filter 0.3s ease;
 }
 .container:hover {
-  filter: brightness(1.8);
+  filter: brightness(2.5);
   box-shadow: 0 0 15px 5px rgba(0, 174, 255, 0.1); /* Vibrant glow */
 }
 .containerSelected {
   @extend .container;
-  filter: brightness(2.1);
+  filter: brightness(2.3);
   box-shadow: 0 0 15px 5px rgba(0, 174, 255, 0.1); /* Vibrant glow */
 }
 .container-header {
