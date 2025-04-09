@@ -11,7 +11,7 @@ export const getUserActivities = async (req: Request, res: Response) => {
     let stravaActivitiesData: Array<Object> = [];
     const stravaActivitiesDataRaw = await getUserActivitiesData(
       Number(req.params.userId),
-      req.params.activitiesCount
+      Number(req.params.activitiesCount)
     );
     // console.log(stravaActivitiesDataRaw);
     //filter strava activity data

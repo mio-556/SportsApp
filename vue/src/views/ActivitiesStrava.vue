@@ -4,8 +4,8 @@
     <div v-if="activityLoaded && activities.length > 0">
       <div v-for="(item, index) in activities" :key="item">
         <widgets.mActivitySummary
-          :header-text="item.title"
-          :header-date="item.dateTime"
+          :header-text="item.name"
+          :header-date="item.start_date_local"
           text1="Distance"
           :svgIcon1="mdiMapMarkerDistance"
           :data1="roundTo(item.distance / 1000, 2)"
@@ -15,7 +15,7 @@
           :data2="item.shoes"
           text3="Avg hr"
           :svgIcon3="mdiHeartPulse"
-          :data3="item.avgHeartRate"
+          :data3="roundTo(item.average_heartrate, 0)"
           unit3="b/m"
           :icons-color="iconsColor"
           :background-color="

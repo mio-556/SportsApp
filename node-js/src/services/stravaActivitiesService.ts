@@ -10,8 +10,9 @@ export const getUserActivitiesData = async (
 ) => {
   try {
     const response = await axios.get(
-      `https://www.strava.com/api/v3/athlete/activities?access_token=${accessTokenStrava}`
+      `https://www.strava.com/api/v3/athlete/activities?per_page=${activitiesCount}&access_token=${accessTokenStrava}`
     );
+    console.log("response data:", response.data);
     if (response.status === 200) {
       return response.data;
     } else {
