@@ -15,13 +15,16 @@ export const getUserActivities = async (req: Request, res: Response) => {
     );
     // console.log(stravaActivitiesDataRaw);
     //filter strava activity data
-    if (stravaActivitiesDataRaw) {
+    if (stravaActivitiesDataRaw.status === 200) {
       stravaActivitiesData = filterStravaActivities(stravaActivitiesDataRaw);
     }
-    if (!stravaActivitiesData) {
-      res.status(201).json({ message: "No Data" });
+    if (stravaActivitiesDataRaw.status === 401) {
+      res.status(401).json({ message: "Unauthorized" });
     }
-    res.json(stravaActivitiesData);
+    // if (!stravaActivitiesData) {
+    //   res.status(201).json({ message: "No Data" });
+    // }
+    // res.json(stravaActivitiesData);
   } catch (err) {
     res.status(500).json({ err: "Error fetching data from STRAVA" + err });
   }

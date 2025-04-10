@@ -12,3 +12,9 @@ export const defaultStravaActivity: StravaActivity = {
   average_heartrate: 0,
   start_date_local: "",
 };
+export type StravaTokensResponse = {
+  access_token?: String;
+  refresh_token?: String;
+  response_status?: Number;
+  response_err?: String;
+};

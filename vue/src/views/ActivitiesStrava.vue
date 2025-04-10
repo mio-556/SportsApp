@@ -29,6 +29,10 @@
       </div>
     </div>
     <div v-else-if="!activityLoaded">Loading data...</div>
+    <div v-else-if="activityLoaded && !userAuthorized">
+      Unauthorized.
+      <widgets.mButton text="Authorize" @clicked="gotoStravaAuthorization()" />
+    </div>
     <div v-else>No activities.</div>
   </div>
 </template>
@@ -45,6 +49,9 @@ import { ActivityNames } from '@/constants/constants'
 import { BACKEND_URL } from '@/constants/api'
 import { useUserStore } from '@/stores/userStore'
 import { roundTo } from '@/helpers/converters'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
 
 const iconsColor = 'rgb(0, 168, 64)'
 const userStore = useUserStore()
@@ -53,7 +60,8 @@ const { selectedUserId } = storeToRefs(userStore)
 const { activities, selectedActivityId } = storeToRefs(lastStravaActivitiesStore)
 const isNewPostDialogOpen = ref(false)
 const activityLoaded = ref(false)
-const lastActivitiesStravaItemsToShow = 5
+const numberOfItemsToShow = 5
+const userAuthorized = ref(false)
 
 //fetch the data from the backend server and save to store
 const getActivities = async () => {
@@ -66,10 +74,14 @@ const getActivities = async () => {
 
   try {
     const response = await axios.get(
-      `${BACKEND_URL}/stravaActivities/user/${selectedUserId.value}/lastActivities/${lastActivitiesStravaItemsToShow}`,
+      `${BACKEND_URL}/stravaActivities/user/${selectedUserId.value}/lastActivities/${numberOfItemsToShow}`,
     )
     activityLoaded.value = true
     if (response.data.message === 'No Data') {
+      return
+    }
+    if (response.status === 401) {
+      userAuthorized.value = false
       return
     }
     console.log(response.data)
@@ -79,12 +91,46 @@ const getActivities = async () => {
     console.log(`${err}`)
   }
 }
+// TODO: use some solution that will save the path to browser memory to retrieve where to redirect back
+// redirecting to Strava authorization to get code for later access_token retrieval
+const gotoStravaAuthorization = () => {
+  window.location.href =
+    'https://strava.com/oauth/authorize?client_id=154776&response_type=code&redirect_uri=http://localhost/exchange_token&approval_prompt=force&scope=activity:read_all'
+}
 
 watch(selectedUserId, async () => {
   await getActivities()
 })
 
 onMounted(async () => {
+  const stravaAuthorizationCode = route.query.code
+  const stravaAuthorizationState = route.query.state
+  const stravaAuthorizationScope = route.query.scope
+  console.log('query params:')
+  console.log(
+    'stravaAuthorizationState:',
+    stravaAuthorizationState,
+    'stravaAuthorizationCode:',
+    stravaAuthorizationCode,
+    'stravaAuthorizationScope:',
+    stravaAuthorizationScope,
+  )
+  if (stravaAuthorizationCode) {
+    // when query params provided do the api call to retrieve the token
+    try {
+      const response = await axios.post(
+        `${BACKEND_URL}/stravaAccessToken/${selectedUserId.value}/${stravaAuthorizationCode}`,
+      )
+      if (response.status === 200) {
+        if (response.data.message === 'success') {
+          userAuthorized.value = true
+        }
+      }
+    } catch (err) {
+      console.log(`${err}`)
+    }
+  }
+
   selectedActivityId.value = 0
   await getActivities()
 })

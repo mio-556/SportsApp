@@ -3,7 +3,8 @@ import express, { Request, Response, RequestHandler } from "express";
 import usersRoute from "./routes/api/users.js";
 import activities from "./routes/api/activities.js";
 import stravaActivities from "./routes/api/stravaActivities.js";
-import runsRoute from "./routes/api/runs.js";
+import stravaAccessToken from "./routes/api/stravaAccessToken.js";
+
 import lastActivitiesRoute from "./routes/api/lastActivities.js";
 const app = express();
 
@@ -39,5 +40,6 @@ app.get("/", (request: Request, response: Response) => {
 app.use("/users", usersRoute);
 app.use("/activities", activities);
 app.use("/stravaActivities", stravaActivities);
+app.use("/stravaAccessToken", stravaAccessToken);
 
 export default app;

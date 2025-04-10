@@ -19,7 +19,8 @@ const router = createRouter({
       component: ActivitiesMenu,
       children: [
         { path: '/activities', component: Activities },
-        { path: '/activities-strava', component: ActivitiesStrava },
+        // alias used for redirection from strava authorize page
+        { path: '/activities-strava', component: ActivitiesStrava, alias: '/exchange_token' },
         { path: '/running', component: Running },
         { path: '/cycling', component: Cycling },
       ],
