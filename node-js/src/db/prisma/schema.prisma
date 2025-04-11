@@ -18,8 +18,19 @@ model User {
   runActivities RunActivity[]
   bikeActivities BikeActivity[]
   coldBaths ColdBaths[]
+  tokens Token[]
 }
 
+model Token {
+  id Int @id @default(autoincrement())
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+  provider String
+  accessToken String
+  refreshToken String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
 
 model RunActivity {
   id  Int @id @default(autoincrement())

@@ -13,8 +13,15 @@ export const defaultStravaActivity: StravaActivity = {
   start_date_local: "",
 };
 export type StravaTokensResponse = {
-  access_token?: String;
-  refresh_token?: String;
-  response_status?: Number;
-  response_err?: String;
+  access_token: string;
+  refresh_token: string;
+  expires_at: number;
+  created_at?: number;
+  response_status?: number;
+  response_err?: string;
+};
+export const defaultStravaTokensResponse: StravaTokensResponse = {
+  access_token: "",
+  refresh_token: "",
+  expires_at: 0,
 };
