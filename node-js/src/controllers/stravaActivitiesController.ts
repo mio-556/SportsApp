@@ -13,18 +13,19 @@ export const getUserActivities = async (req: Request, res: Response) => {
       Number(req.params.userId),
       Number(req.params.activitiesCount)
     );
-    // console.log(stravaActivitiesDataRaw);
     //filter strava activity data
     if (stravaActivitiesDataRaw.status === 200) {
-      stravaActivitiesData = filterStravaActivities(stravaActivitiesDataRaw);
+      stravaActivitiesData = filterStravaActivities(
+        stravaActivitiesDataRaw.data
+      );
     }
     if (stravaActivitiesDataRaw.status === 401) {
       res.status(401).json({ message: "Unauthorized" });
     }
-    // if (!stravaActivitiesData) {
-    //   res.status(201).json({ message: "No Data" });
-    // }
-    // res.json(stravaActivitiesData);
+    if (!stravaActivitiesData) {
+      res.status(201).json({ message: "No Data" });
+    }
+    res.json(stravaActivitiesData);
   } catch (err) {
     res.status(500).json({ err: "Error fetching data from STRAVA" + err });
   }

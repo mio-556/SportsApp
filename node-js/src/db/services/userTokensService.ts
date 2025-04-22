@@ -10,3 +10,14 @@ export const addStravaTokenToDb = async (
     },
   });
 };
+
+export const getStravaTokenFromDb = async (userId: number) => {
+  return await prisma.token.findFirstOrThrow({
+    where: {
+      userId: userId,
+      expiresAt: {
+        gt: new Date(),
+      },
+    },
+  });
+};
