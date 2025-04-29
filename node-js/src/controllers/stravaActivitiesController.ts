@@ -13,6 +13,7 @@ export const getUserActivities = async (req: Request, res: Response) => {
       Number(req.params.userId),
       Number(req.params.activitiesCount)
     );
+    // console.log("stravaActivitiesDataRaw.data", stravaActivitiesDataRaw.data);
     //filter strava activity data
     if (stravaActivitiesDataRaw.status === 200) {
       stravaActivitiesData = filterStravaActivities(

@@ -12,7 +12,9 @@ const { selectedUserId } = storeToRefs(userStore)
 
 const users = ref([])
 // fetch all users from backend
-onMounted(async () => getUsers())
+onMounted(async () => {
+  await getUsers()
+})
 
 //fetch the data from the backend server and save to store
 const getUsers = async () => {
@@ -25,6 +27,10 @@ const getUsers = async () => {
   } catch (err) {
     console.log(`${err}`)
   }
+}
+// Save selectedUserId into the lastSession data
+const backupSelectedUser = () => {
+  sessionStorage.setItem('selectedUserId', String(selectedUserId.value))
 }
 </script>
 
@@ -41,6 +47,7 @@ const getUsers = async () => {
           class="userDropdown"
           v-model:selected-user-id="selectedUserId"
           :user-list="users"
+          @value-changed="backupSelectedUser"
         />
       </nav>
     </div>

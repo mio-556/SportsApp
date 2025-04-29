@@ -5,7 +5,14 @@
       class="userDropdown"
       name="user"
       :value="selectedUserId"
-      @change="emits('update:selectedUserId', Number($event.target.value))"
+      @change="
+        (event: Event) => {
+          // type the nested event property
+          const target = event.target as HTMLInputElement
+          emits('update:selectedUserId', Number(target.value))
+          emits('valueChanged')
+        }
+      "
     >
       <option
         :value="selectedUserId"
@@ -26,16 +33,15 @@
 import type { PropType } from 'vue'
 import type { User } from '@/types/userTypes'
 
-const props = defineProps({
-  selectedUserId: {
-    type: [Number, String] as PropType<number | string>,
-  },
-  userList: {
-    type: Array as PropType<User[]>,
-    required: true,
-  },
-})
-const emits = defineEmits(['update:selectedUserId'])
+const props = defineProps<{
+  selectedUserId: number | string
+  userList: User[]
+}>()
+// const emits = defineEmits(['update:selectedUserId', 'valueChanged'])
+const emits = defineEmits<{
+  (e: 'update', selectedUserId: Number): void
+  (e: 'valueChanged'): void
+}>()
 </script>
 <style scoped lang="scss">
 .mainContainer {

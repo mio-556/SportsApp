@@ -19,7 +19,7 @@ export const getAccessToken = async (req: Request, res: Response) => {
 
       // store the tokens into the database
       const addTokenToDbResult = await addStravaTokenToDb({
-        userId: Number(req.params.userId) * 0 + 1, //temporarry until the last session stored
+        userId: Number(req.params.userId),
         accessToken: tokensResponse.access_token,
         refreshToken: tokensResponse.refresh_token,
         expiresAt: new Date(tokensResponse.expires_at * 1000),
